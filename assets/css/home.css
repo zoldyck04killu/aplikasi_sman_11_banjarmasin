@@ -1,0 +1,74 @@
+.nameHeader{
+  float: left;
+  margin-left: 10px;
+}
+
+.form{
+  padding: 50px 250px;
+}
+
+
+.header-hal{
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.header-hal-admin{
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+hr {
+    /* display: block; */
+    height: 1px;
+    border-top: 1px solid #ccc;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.for-table{
+  /* display: block; */
+  height: 1px;
+  border-top: 2px solid #ccc;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.daftar-table{
+  margin: 20px 20px;
+}
+
+.grafik-table{
+  margin: 50px 200px;
+}
+
+.view-buku {
+  border: 2px solid none;
+  border-radius: 50px 50px 50px 50px;
+  box-shadow: 0px 0px 5px 5px #c8c8c8;
+  width: 70%;
+  padding: 100px 70px;
+  margin-top: 50px;
+  text-align: left;
+  color: #3d3d3d;
+}
+
+.view-buku .isi-buku p {
+  text-align: justify;
+}
+
+.view-buku table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.view-buku th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.view-buku tr:nth-child(even) {background-color: #f2f2f2;}
