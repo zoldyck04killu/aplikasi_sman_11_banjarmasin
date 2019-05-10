@@ -75,7 +75,14 @@
 
 		<div class="form-group col-xs-5 col-lg-4">
 			<label for="code">HARI</label>
-		    <input type="text" id="hari" class="form-control" placeholder="Masukan Hari" >
+		    <select id="hari" class="form-control">
+		    	<option value="senin">senin</option>
+		    	<option value="selasa">selasa</option>
+		    	<option value="rabu">rabu</option>
+		    	<option value="kamis">kamis</option>
+		    	<option value="jumat">jumat</option>
+		    	<option value="sabtu">sabtu</option>
+		    </select>
 		</div>
 
 		<div class="form-group col-xs-5 col-lg-4">
@@ -125,7 +132,7 @@ $(document).ready(function(){
 	$('#tambah').click(function(){
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Tambah Data');
-		$('#nip').attr('readonly', false);
+		$('#kode').attr('readonly', false);
 
 	}); // tambah
 
@@ -250,7 +257,7 @@ $(document).ready(function(){
 
 						}
 
-						$('select').html(option);
+						$('#nip').html(option);
 					}
 			});
 	}

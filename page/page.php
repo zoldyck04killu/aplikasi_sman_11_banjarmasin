@@ -35,6 +35,16 @@ elseif (@$_GET['view'] == 'data-kegiatan')
 	include 'view/kegiatan/data-kegiatan.php';
 }
 
+elseif (@$_GET['view'] == 'data-kelas') 
+{
+  include 'view/kelas/data-kelas.php';
+}
+
+elseif (@$_GET['view'] == 'mata-pelajaran') 
+{
+  include 'view/pelajaran/mata_pelaharan.php'; 
+}
+
 else
 {
   include 'view/404.php';

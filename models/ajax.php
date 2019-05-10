@@ -144,4 +144,101 @@
 
  // AJAX REQUEST KEGIATAN
 
+ // AJAX REQUEST KELAS
+
+ elseif (@$_REQUEST['type'] == 'tambah_kelas') {
+   
+   $kode  = @$_POST['kode'];
+   $nama  = @$_POST['nama'];
+   $tahun = @$_POST['tahun'];
+   $siswa = @$_POST['siswa'];
+
+   $objAdmin->simpan_kelas($kode, $nama, $tahun, $siswa);
+   echo json_encode($res['status'] = true);
+
+ }
+
+ elseif (@$_REQUEST['type'] == 'update_kelas') {
+   
+   $kode  = @$_POST['kode'];
+   $nama  = @$_POST['nama'];
+   $tahun = @$_POST['tahun'];
+   $siswa = @$_POST['siswa'];
+
+   $objAdmin->update_kelas($kode, $nama, $tahun, $siswa);
+   echo json_encode($res['status'] = true);
+
+ }
+
+ elseif (@$_REQUEST['type'] == 'delete_kelas') {
+   
+   $kode  = @$_POST['kode'];
+
+   $objAdmin->hapus_kelas($kode);
+   echo json_encode($res['status'] = true);
+
+ }
+
+ // AJAX REQUEST KELAS
+
+
+  // AJAX REQUEST PELAJARAN
+
+ elseif (@$_REQUEST['type'] == 'get_kd_kelas') {
+   
+  $instance = $objAdmin->get_kd_kelas();
+
+  $data = array();
+
+   while (  $kode = $instance->fetch_object() ) {
+     
+      $data[] = $kode->kd_kelas;
+
+   }
+
+   echo json_encode($data);
+
+ }
+
+ elseif (@$_REQUEST['type'] == 'tambah_pelajaran') {
+   
+   $kode      = @$_POST['kode'];
+   $nama      = @$_POST['nama'];
+   $nip       = @$_POST['nip'];
+   $hari      = @$_POST['hari'];
+   $jam       = @$_POST['jam'];
+   $kd_kelas  = @$_POST['kd_kelas'];
+
+   $objAdmin->simpan_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas);
+
+   echo json_encode($res['status'] = true);
+
+ }
+
+ elseif (@$_REQUEST['type'] == 'update_pelajaran') {
+   
+  $kode      = @$_POST['kode'];
+  $nama      = @$_POST['nama'];
+  $nip       = @$_POST['nip'];
+  $hari      = @$_POST['hari'];
+  $jam       = @$_POST['jam'];
+  $kd_kelas  = @$_POST['kd_kelas'];
+
+  $objAdmin->update_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas);
+
+  echo json_encode($res['status'] = true);
+
+ }
+
+ elseif (@$_REQUEST['type'] == 'delete_pelajaran') {
+   
+  $kode  = @$_POST['kode'];
+
+  $objAdmin->hapus_pelajaran($kode);
+  echo json_encode($res['status'] = true);
+
+ }
+
+ // AJAX REQUEST PELAJARAN
+
 ?>

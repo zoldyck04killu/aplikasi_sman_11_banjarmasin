@@ -115,6 +115,73 @@ class Admin
     return true;
   }
 
+
+
+  function show_kelas()
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT * FROM kelas ");
+    return $query; 
+  }
+
+  function simpan_kelas($kode, $nama, $tahun, $siswa)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" INSERT INTO kelas VALUES ('$kode', '$nama', '$tahun', '$siswa') ");
+    return true;
+  }
+
+  function update_kelas($kode, $nama, $tahun, $siswa)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" UPDATE kelas SET nama_kelas = '$nama', thn_ajaran = '$tahun', jml_siswa = '$siswa' WHERE kd_kelas = '$kode' ");
+    return true;
+  }
+
+  function hapus_kelas($kode)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" DELETE FROM kelas WHERE kd_kelas = '$kode' ");
+    return true;
+  }
+
+
+
+  function show_pelajaran()
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT * FROM mata_pelajaran ");
+    return $query;
+  }
+
+  function get_kd_kelas()
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT kd_kelas FROM kelas ");
+    return $query;
+  }
+
+  function simpan_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" INSERT INTO mata_pelajaran VALUES ('$kode', '$nama', '$nip', '$hari', '$jam', '$kd_kelas') ");
+    return true;
+  }
+
+  function update_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" UPDATE mata_pelajaran SET nama_matpel = '$nama', nip = '$nip', hari = '$hari', jam = '$jam', kd_kelas = '$kd_kelas' WHERE kd_matpel = '$kode' ");
+    return true;
+  }
+
+  function hapus_pelajaran($kode)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" DELETE FROM mata_pelajaran WHERE kd_matpel = '$kode' ");
+    return true;
+  }
+
   
 
 }// end class
