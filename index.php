@@ -116,7 +116,9 @@ $objAdmin = new Admin($obj);
 </body>
 <script type="text/javascript">
     $(document).ready( function () {
-      $('#table').DataTable();
+      $('#myTable').DataTable({
+        "bLengthChange": false,
+      });
     } );
 </script>
 </html>

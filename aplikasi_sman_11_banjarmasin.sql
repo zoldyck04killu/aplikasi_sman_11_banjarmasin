@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 05, 2019 at 09:28 PM
--- Server version: 10.3.14-MariaDB
--- PHP Version: 7.3.4
+-- Host: 127.0.0.1
+-- Generation Time: May 10, 2019 at 04:14 AM
+-- Server version: 10.1.39-MariaDB
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,6 +66,14 @@ CREATE TABLE `guru` (
   `jabatan` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `guru`
+--
+
+INSERT INTO `guru` (`nip`, `nama_guru`, `jk_guru`, `no_telp`, `email`, `alamat`, `jabatan`) VALUES
+('1111', 'Aldi', 'l', '123', 'dsd@asd.com', 'asd', 'jabatan'),
+('777', 'Muhammad Aldi Renaldy', 'p', '08888', 'aldi@oke.com', 'Jalan Mahligai', 'jabatan');
+
 -- --------------------------------------------------------
 
 --
@@ -76,10 +84,17 @@ CREATE TABLE `kegiatan` (
   `kd_kegiatan` int(50) NOT NULL,
   `nama_kegiatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hari_kegiatan` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jam_kegiatan` time NOT NULL,
+  `jam_kegiatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tempat_kegiatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nip` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kegiatan`
+--
+
+INSERT INTO `kegiatan` (`kd_kegiatan`, `nama_kegiatan`, `hari_kegiatan`, `jam_kegiatan`, `tempat_kegiatan`, `nip`) VALUES
+(1, 'Menyapu', 'Selasa', '00:12', 'Mushola', 1111);
 
 -- --------------------------------------------------------
 
@@ -137,6 +152,14 @@ CREATE TABLE `siswa` (
   `tempat_lahir` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_lahir` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`nis_siswa`, `nama_siswa`, `jk_siswa`, `tempat_lahir`, `tgl_lahir`) VALUES
+('123', 'tes', 'p', 'asd', '2019-06-07'),
+('7777', 'Muhammad Aldi ', 'l', 'Banjarmasin', '2019-05-10');
 
 -- --------------------------------------------------------
 
@@ -224,7 +247,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `kd_kegiatan` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_kegiatan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12313;
 
 --
 -- AUTO_INCREMENT for table `kelas`
