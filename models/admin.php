@@ -13,7 +13,30 @@ class Admin
     $this->mysqli = $mysqli;
   }
 
+  public function login($username, $password)
+  {
+    $db     = $this->mysqli->conn;
+    $cekUser = $db->query("SELECT * FROM admin WHERE username = '$username' ")->num_rows;
+    $userData = $db->query("SELECT * FROM admin WHERE username = '$username' ")->fetch_object();
+    if ($cekUser == 1) {
 
+      if (password_verify($password, $userData->password)) {
+        
+          $_SESSION['username'] = $userData->username;
+          $_SESSION['kewenangan'] = $userData->kewenangan;
+          return true;
+
+      }else{
+
+          return false;
+      }
+
+    }else{
+
+          return false;
+
+    }
+  }
 
 
   function show_siswa()

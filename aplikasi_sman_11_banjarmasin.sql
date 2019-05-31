@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2019 at 07:33 AM
+-- Generation Time: May 31, 2019 at 10:08 PM
 -- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,6 +50,13 @@ CREATE TABLE `admin` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kewenangan` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `username`, `password`, `kewenangan`) VALUES
+(1, 'admin', '$2y$10$V4wMsjOfzBChjD3koGQNOeFOjMGOAhXPVPUauACoYm03ix/gAeSfy', 'admin');
 
 -- --------------------------------------------------------
 
@@ -257,7 +264,7 @@ ALTER TABLE `wali`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
