@@ -9,14 +9,24 @@
 // AJAX REQUEST SISWA
 
  if (@$_REQUEST['type'] == 'tambah_siswa') {
-      
+
       $nis   = $_POST['nis'];
       $nama  = $_POST['nama'];
       $jk    = $_POST['jk'];
       $lahir = $_POST['lahir'];
-      $tgl   = $_POST['tgl'];
+      $tgl = $_POST['tgl'];
+      $agama   = $_POST['agama'];
+      $alamat   = $_POST['alamat'];
+      $telp_rmh   = $_POST['telp_rmh'];
+      $asal_sekolah   = $_POST['asal_sekolah'];
+      $thn_lulus   = $_POST['thn_lulus'];
+      $nama_bpk   = $_POST['nama_bpk'];
+      $kerja_bpk   = $_POST['kerja_bpk'];
+      $nama_ibu   = $_POST['nama_ibu'];
+      $kerja_ibu   = $_POST['kerja_ibu'];
 
-      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl);
+
+      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu);
 
       echo json_encode($res['status'] = true);
 
@@ -46,7 +56,7 @@
  // AJAX REQUEST GURU
 
  elseif (@$_REQUEST['type'] == 'tambah_guru') {
-   
+
     $nip     = @$_POST['nip'];
     $nama    = @$_POST['nama'];
     $jk      = @$_POST['jk'];
@@ -61,7 +71,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'update_guru') {
-   
+
     $nip     = @$_POST['nip'];
     $nama    = @$_POST['nama'];
     $jk      = @$_POST['jk'];
@@ -76,7 +86,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'delete_guru') {
-   
+
     $nip   = @$_POST['nip'];
 
     $objAdmin->delete_guru($nip);
@@ -90,13 +100,13 @@
  // AJAX REQUEST KEGIATAN
 
  elseif (@$_REQUEST['type'] == 'select_nip_kegiatan') {
-   
+
   $instance = $objAdmin->get_nip();
 
   $data = array();
 
    while (  $nip = $instance->fetch_object() ) {
-     
+
       $data[] = $nip->nip;
 
    }
@@ -106,7 +116,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'tambah_kegiatan') {
-   
+
    $kode    = @$_POST['kode'];
    $nama    = @$_POST['nama'];
    $hari    = @$_POST['hari'];
@@ -120,7 +130,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'update_kegiatan') {
-   
+
    $kode    = @$_POST['kode'];
    $nama    = @$_POST['nama'];
    $hari    = @$_POST['hari'];
@@ -134,7 +144,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'delete_kegiatan') {
-   
+
     $kode    = @$_POST['kode'];
 
     $objAdmin->delete_kegiatan($kode);
@@ -147,7 +157,7 @@
  // AJAX REQUEST KELAS
 
  elseif (@$_REQUEST['type'] == 'tambah_kelas') {
-   
+
    $kode  = @$_POST['kode'];
    $nama  = @$_POST['nama'];
    $tahun = @$_POST['tahun'];
@@ -159,7 +169,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'update_kelas') {
-   
+
    $kode  = @$_POST['kode'];
    $nama  = @$_POST['nama'];
    $tahun = @$_POST['tahun'];
@@ -171,7 +181,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'delete_kelas') {
-   
+
    $kode  = @$_POST['kode'];
 
    $objAdmin->hapus_kelas($kode);
@@ -185,13 +195,13 @@
   // AJAX REQUEST PELAJARAN
 
  elseif (@$_REQUEST['type'] == 'get_kd_kelas') {
-   
+
   $instance = $objAdmin->get_kd_kelas();
 
   $data = array();
 
    while (  $kode = $instance->fetch_object() ) {
-     
+
       $data[] = $kode->kd_kelas;
 
    }
@@ -201,7 +211,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'tambah_pelajaran') {
-   
+
    $kode      = @$_POST['kode'];
    $nama      = @$_POST['nama'];
    $nip       = @$_POST['nip'];
@@ -216,7 +226,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'update_pelajaran') {
-   
+
   $kode      = @$_POST['kode'];
   $nama      = @$_POST['nama'];
   $nip       = @$_POST['nip'];
@@ -231,7 +241,7 @@
  }
 
  elseif (@$_REQUEST['type'] == 'delete_pelajaran') {
-   
+
   $kode  = @$_POST['kode'];
 
   $objAdmin->hapus_pelajaran($kode);

@@ -50,14 +50,14 @@ $objAdmin = new Admin($obj);
               <a class="nav-link" href="#">Kontak</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="?view=login">Login</a>
             </li>
           </ul>
         </span>
       </div>
     </nav>
 
-    <div class="row" id="body-row">
+    <div class="row" id="body-row ">
         <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
             <ul class="list-group">
                 <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
@@ -66,28 +66,53 @@ $objAdmin = new Admin($obj);
                     <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
-                        <span class="menu-collapsed">Info</span>
+                        <span class="menu-collapsed">Home</span>
+                      </div>
+                    </a>
+                    <a href="" aria-expanded="false"  class="bg-dark list-group-item list-group-item-action flex-column align-items-start " >
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Sejarah</span>
+                      </div>
+                    </a>
+
+                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Artikel</span>
                       </div>
                     </a>
                     <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Kontak</span>
+                      </div>
+                    </a>
+                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Info</span>
+                      </div>
+                    </a>
+                    <a href="?view=data-siswa" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Data Siswa</span>
                       </div>
                     </a>
-                    <a href=""  aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="?view=data-guru"  aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Data Guru</span>
                       </div>
                     </a>
-                <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <a href="?view=mata-pelajaran" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Mata Pelajaran</span>
                     </div>
                 </a>
-                <a href=""  aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <a href="?view=data-kegiatan"  aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Kegiatan</span>
@@ -99,6 +124,7 @@ $objAdmin = new Admin($obj);
                         <span class="menu-collapsed">Nilai</span>
                     </div>
                 </a>
+
 
             </ul>
         </div> <!-- End Sidebar -->
@@ -139,7 +165,7 @@ $objAdmin = new Admin($obj);
 
 
 .sidebar-expanded {
-    width: 230px;
+    width: 180px;
 }
 .sidebar-collapsed {
     width: 60px;

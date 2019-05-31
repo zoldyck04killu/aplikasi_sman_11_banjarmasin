@@ -19,30 +19,30 @@ elseif (@$_GET['view'] == 'logout')
 }
 
 
-elseif (@$_GET['view'] == 'data-siswa') 
+elseif (@$_GET['view'] == 'data-siswa')
 {
   include 'view/siswa/data-siswa.php';
 }
 
 
-elseif (@$_GET['view'] == 'data-guru') 
+elseif (@$_GET['view'] == 'data-guru')
 {
 	include 'view/guru/data-guru.php';
 }
 
-elseif (@$_GET['view'] == 'data-kegiatan') 
+elseif (@$_GET['view'] == 'data-kegiatan')
 {
 	include 'view/kegiatan/data-kegiatan.php';
 }
 
-elseif (@$_GET['view'] == 'data-kelas') 
+elseif (@$_GET['view'] == 'data-kelas')
 {
   include 'view/kelas/data-kelas.php';
 }
 
-elseif (@$_GET['view'] == 'mata-pelajaran') 
+elseif (@$_GET['view'] == 'mata-pelajaran')
 {
-  include 'view/pelajaran/mata_pelaharan.php'; 
+  include 'view/pelajaran/mata_pelaharan.php';
 }
 
 else

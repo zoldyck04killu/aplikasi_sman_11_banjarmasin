@@ -23,10 +23,10 @@ class Admin
   	return $query;
   }
 
-  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl)
+  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" INSERT INTO siswa VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl') ");
+  	$query = $db->query(" INSERT INTO siswa VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl', '$agama', '$alamat', '$telp_rmh', '$asal_sekolah', '$thn_lulus', '$nama_bpk', '$kerja_bpk', '$nama_ibu', '$kerja_ibu') ");
   	return true;
   }
 
@@ -52,7 +52,7 @@ class Admin
   {
     $db    = $this->mysqli->conn;
     $query = $db->query(" SELECT * FROM guru");
-    return $query; 
+    return $query;
   }
 
   function simpan_guru($nip, $nama, $jk, $telp, $email, $alamat, $jabatan)
@@ -121,7 +121,7 @@ class Admin
   {
     $db    = $this->mysqli->conn;
     $query = $db->query(" SELECT * FROM kelas ");
-    return $query; 
+    return $query;
   }
 
   function simpan_kelas($kode, $nama, $tahun, $siswa)
@@ -182,7 +182,7 @@ class Admin
     return true;
   }
 
-  
+
 
 }// end class
 

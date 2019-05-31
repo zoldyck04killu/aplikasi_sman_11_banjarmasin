@@ -1,0 +1,15 @@
+[syarif]
+Desain
+CRUD:
+  data siswa
+  kegiatan
+  nilai
+  hak akses
+
+[aldi]
+CRUD:
+  Guru
+  mata pelajaran
+  artikel
+  sejarah
+  login

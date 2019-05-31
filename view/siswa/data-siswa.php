@@ -3,13 +3,14 @@
 <div class="row mt-4" id="" style="">
 
 	<div class="col-md-12" id="" style="">
-	
+
 			<h4 class="text-center">Data Siswa</h4> <hr>
 
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-			
+
+			<div class="table-responsive" >
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
 					<tr>
@@ -18,11 +19,21 @@
 						<th colspan="" rowspan="" headers="" scope="">Jenis Kelamin</th>
 						<th colspan="" rowspan="" headers="" scope="">Tempat Lahir</th>
 						<th colspan="" rowspan="" headers="" scope="">Tgl Lahir</th>
+						<th colspan="" rowspan="" headers="" scope="">Agama </th>
+						<th colspan="" rowspan="" headers="" scope="">Alamat </th>
+						<th colspan="" rowspan="" headers="" scope="">Telp Rumah </th>
+						<th colspan="" rowspan="" headers="" scope="">Asal Sekolah </th>
+						<th colspan="" rowspan="" headers="" scope="">Tahun Lulus </th>
+						<th colspan="" rowspan="" headers="" scope="">Nama Bapak </th>
+						<th colspan="" rowspan="" headers="" scope="">Kerja Bapak </th>
+						<th colspan="" rowspan="" headers="" scope="">Nama Ibu </th>
+						<th colspan="" rowspan="" headers="" scope="">Kerja Ibu </th>
+
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php 
+					<?php
 						$data = $objAdmin->show_siswa();
 						while ( $a = $data->fetch_object()) { ?>
 
@@ -32,6 +43,16 @@
 					 	<td colspan="" rowspan="" headers=""><?php echo $a->jk_siswa == 'l' ? 'Laki-Laki' : 'Perempuan' ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->tempat_lahir ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->tgl_lahir ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->agama ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->alamat ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->telp_rmh ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->asal_sekolah ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->thn_lulus ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->nama_bpk ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->kerja_bpk ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->nama_ibu ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->kerja_ibu ?></td>
+
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit" data-nis="<?=$a->nis_siswa ?>" data-nama="<?=$a->nama_siswa ?>" data-jk="<?=$a->jk_siswa ?>" data-lahir="<?=$a->tempat_lahir ?>" data-tgl="<?=$a->tgl_lahir ?>">Edit</button>
@@ -40,11 +61,11 @@
 					 	</td>
 
 					 </tr>
-					
+
 					<?php } ?>
 				</tbody>
 			</table>
-
+			</div>
 		</div>
 	</div>
 </div>
@@ -60,7 +81,7 @@
         </button>
       </div>
       <div class="modal-body" id="modal_body">
-       
+
        <div class="form-group col-xs-5 col-lg-4">
 			<label for="code">NIS</label>
 		    <input type="number" id="nis" class="form-control" placeholder="Masukan NIS" >
@@ -87,8 +108,53 @@
 
 		    <div class="form-group col-xs-5 col-lg-6">
 				<label for="code">TANGGAL LAHIR</label>
-				<input type="date" id="tgl" class="form-control input-normal" >
+				<input type="date" id="tgl" class="form-control input-normal"  >
 			</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Agama</label>
+				<input type="text" id="agama" class="form-control input-normal" placeholder="Masukan Agama">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Alamat</label>
+				<input type="text" id="alamat" class="form-control input-normal" placeholder="Masukan Alamat">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Telp Rumah</label>
+				<input type="text" id="telp_rmh" class="form-control input-normal" placeholder="Masukan Telp Rumah">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Asal Sekolah</label>
+				<input type="text" id="asal_sekolah" class="form-control input-normal" placeholder="Masukan Asal Sekolah" >
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Tahun Lulus</label>
+				<input type="text" id="thn_lulus" class="form-control input-normal" placeholder="Masukan Tahun Lulus">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Nama Bapak</label>
+				<input type="text" id="nama_bpk" class="form-control input-normal" placeholder="Masukan Nama Bapak">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Pekerjaan Bapak</label>
+				<input type="text" id="kerja_bpk" class="form-control input-normal" placeholder="Masukan Pekerjaan Bapak">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Nama Ibu</label>
+				<input type="text" id="nama_ibu" class="form-control input-normal" placeholder="Masukan Nama Ibu">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Pekerjaan Ibu</label>
+				<input type="text" id="kerja_ibu" class="form-control input-normal" placeholder="Masukan Pekerjaan Ibu">
+				</div>
 
 
       </div>
@@ -102,7 +168,7 @@
 </div>
 
 <script type="text/javascript">
-	
+
 
 $(document).ready(function(){
 
@@ -128,6 +194,16 @@ $(document).ready(function(){
 		let jk    = $('#jk').val();
 		let lahir = $('#lahir').val();
 		let tgl   = $('#tgl').val();
+		let agama   = $('#agama').val();
+		let alamat   = $('#alamat').val();
+		let telp_rmh   = $('#telp_rmh').val();
+		let asal_sekolah   = $('#asal_sekolah').val();
+		let thn_lulus   = $('#thn_lulus').val();
+		let nama_bpk   = $('#nama_bpk').val();
+		let kerja_bpk   = $('#kerja_bpk').val();
+		let nama_ibu   = $('#nama_ibu').val();
+		let kerja_ibu   = $('#kerja_ibu').val();
+
 
 		if ($('#modal_body').find(':input').val() == '') {
 
@@ -139,7 +215,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl },
+				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, nama_bpk: nama_bpk, kerja_bpk: kerja_bpk, nama_ibu: nama_ibu, kerja_ibu: kerja_ibu },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -150,7 +226,7 @@ $(document).ready(function(){
 
 		}
 
-	
+
 
 	}); // simpan
 
