@@ -8,8 +8,8 @@ CRUD:
 
 [aldi]
 CRUD:
-  Guru
-  mata pelajaran
+  Guru [done]
+  mata pelajaran [done]
   artikel
   sejarah
   login [DONE]

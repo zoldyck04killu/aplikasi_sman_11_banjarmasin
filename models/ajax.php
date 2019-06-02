@@ -66,30 +66,28 @@
 
  elseif (@$_REQUEST['type'] == 'tambah_guru') {
 
-    $nip     = @$_POST['nip'];
-    $nama    = @$_POST['nama'];
-    $jk      = @$_POST['jk'];
-    $telp    = @$_POST['telp'];
-    $email   = @$_POST['email'];
-    $alamat  = @$_POST['alamat'];
-    $jabatan = @$_POST['jabatan'];
-
-    $objAdmin->simpan_guru($nip, $nama, $jk, $telp, $email, $alamat, $jabatan);
+    $nip            = @$_POST['nip'];
+    $nama           = @$_POST['nama'];
+    $jk             = @$_POST['jk'];
+    $gol            = @$_POST['gol'];
+    $bidang_studi   = @$_POST['bidang_studi'];
+    $status         = @$_POST['status'];
+   
+    $objAdmin->simpan_guru($nip, $nama, $jk, $gol, $bidang_studi, $status);
     echo json_encode($res['status'] = true);
 
  }
 
  elseif (@$_REQUEST['type'] == 'update_guru') {
 
-    $nip     = @$_POST['nip'];
-    $nama    = @$_POST['nama'];
-    $jk      = @$_POST['jk'];
-    $telp    = @$_POST['telp'];
-    $email   = @$_POST['email'];
-    $alamat  = @$_POST['alamat'];
-    $jabatan = @$_POST['jabatan'];
+    $nip            = @$_POST['nip'];
+    $nama           = @$_POST['nama'];
+    $jk             = @$_POST['jk'];
+    $gol            = @$_POST['gol'];
+    $bidang_studi   = @$_POST['bidang_studi'];
+    $status         = @$_POST['status'];
 
-    $objAdmin->update_guru($nip, $nama, $jk, $telp, $email, $alamat, $jabatan);
+    $objAdmin->update_guru($nip, $nama, $jk, $gol, $bidang_studi, $status);
     echo json_encode($res['status'] = true);
 
  }
@@ -228,11 +226,8 @@
    $kode      = @$_POST['kode'];
    $nama      = @$_POST['nama'];
    $nip       = @$_POST['nip'];
-   $hari      = @$_POST['hari'];
-   $jam       = @$_POST['jam'];
-   $kd_kelas  = @$_POST['kd_kelas'];
-
-   $objAdmin->simpan_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas);
+  
+   $objAdmin->simpan_pelajaran($kode, $nama, $nip);
 
    echo json_encode($res['status'] = true);
 
@@ -243,11 +238,8 @@
   $kode      = @$_POST['kode'];
   $nama      = @$_POST['nama'];
   $nip       = @$_POST['nip'];
-  $hari      = @$_POST['hari'];
-  $jam       = @$_POST['jam'];
-  $kd_kelas  = @$_POST['kd_kelas'];
-
-  $objAdmin->update_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas);
+ 
+  $objAdmin->update_pelajaran($kode, $nama, $nip);
 
   echo json_encode($res['status'] = true);
 

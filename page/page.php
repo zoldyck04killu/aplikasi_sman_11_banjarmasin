@@ -10,6 +10,12 @@ else if (@$_GET['view'] == 'login')
 	include 'view/login.php';
 }
 
+elseif (@$_GET['view'] == 'logout') 
+{
+  $objAdmin->logout();
+  echo '<script> window.location="?view=home" </script>';
+}
+
 elseif (@$_GET['view'] == 'logout')
 {
     $objAdmin->logout();

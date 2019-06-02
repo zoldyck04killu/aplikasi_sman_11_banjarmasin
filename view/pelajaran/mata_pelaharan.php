@@ -16,9 +16,6 @@
 						<th colspan="" rowspan="" headers="" scope="">KODE</th>
 						<th colspan="" rowspan="" headers="" scope="">Nama</th>
 						<th colspan="" rowspan="" headers="" scope="">NIP</th>
-						<th colspan="" rowspan="" headers="" scope="">Hari</th>
-						<th colspan="" rowspan="" headers="" scope="">Jam</th>
-						<th colspan="" rowspan="" headers="" scope="">Kode Kelas</th>
 						<th colspan="" rowspan="" headers="" scope="">PIlihan</th>
 					</tr>
 				</thead>
@@ -31,12 +28,9 @@
 					 	<td colspan="" rowspan="" headers=""><?=$a->kd_matpel ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nama_matpel ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nip ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->hari ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->jam ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->kd_kelas ?></td>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
-						 		<button class="btn btn-info" id="edit" data-kode="<?=$a->kd_matpel ?>" data-nama="<?=$a->nama_matpel ?>" data-nip="<?=$a->nip ?>" data-hari="<?=$a->hari ?>" data-jam="<?=$a->jam ?>" data-kd_kelas="<?=$a->kd_kelas ?>">Edit</button>
+						 		<button class="btn btn-info" id="edit" data-kode="<?=$a->kd_matpel ?>" data-nama="<?=$a->nama_matpel ?>" data-nip="<?=$a->nip ?>">Edit</button>
 						 		<button class="btn btn-danger" id="hapus" data-kode="<?=$a->kd_matpel ?>" >Hapus</button>
 					 		</div>
 					 	</td>
@@ -80,31 +74,6 @@
 				</select>
 		    </div>
 
-		    <div class="form-group col-xs-5 col-lg-4">
-			<label for="code">HARI</label>
-		    <select id="hari" class="form-control">
-		    	<option value="senin">senin</option>
-		    	<option value="selasa">selasa</option>
-		    	<option value="rabu">rabu</option>
-		    	<option value="kamis">kamis</option>
-		    	<option value="jumat">jumat</option>
-		    	<option value="sabtu">sabtu</option>
-		    </select>
-		</div>
-
-		<div class="form-group col-xs-5 col-lg-4">
-			<label for="code">JAM</label>
-		    <input type="time" id="jam" class="form-control" placeholder="Masukan Jam" >
-		</div>
-
-
-		     <div class="form-group col-xs-5 col-lg-4">
-				<label for="code">Kode Kelas</label>
-				<select class="form-control" id="kode_kelas"> 
-					
-				</select>
-		    </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" id="tutup">Tutup</button>
@@ -122,7 +91,6 @@ $(document).ready(function(){
 
 	$('#update').hide();
 	get_nip();
-	get_kd_kelas();
 
 	$('#tutup').click(function(){
 		$('#modal_body').find(':input').val('');
@@ -142,10 +110,7 @@ $(document).ready(function(){
 		let kode  	 = $('#kode').val();
 		let nama  	 = $('#nama').val();
 		let nip 	 = $('#nip').val();
-		let hari 	 = $('#hari').val();
-		let jam  	 = $('#jam').val();
-		let kd_kelas = $('#kode_kelas').val();
-	
+		
 		if ($('#modal_body').find(':input').val() == '') {
 
 			alert('isi field ');
@@ -156,7 +121,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_pelajaran', kode: kode, nama: nama, nip: nip, hari: hari, jam: jam, kd_kelas: kd_kelas },
+				data: { type: 'tambah_pelajaran', kode: kode, nama: nama, nip: nip },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -175,10 +140,7 @@ $(document).ready(function(){
 		let kode   		= $(this).data('kode');
 		let nama   		= $(this).data('nama');
 		let nip  		= $(this).data('nip');
-		let hari  		= $(this).data('hari');
-		let jam  		= $(this).data('jam');
-		let kd_kelas  	= $(this).data('kd_kelas');
-	
+		
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Edit Data');
 
@@ -186,10 +148,7 @@ $(document).ready(function(){
 		$('#kode').attr('readonly', true);
 		$('#nama').val(nama);
 		$('#nip').val(nip);
-		$('#hari').val(hari);
-		$('#jam').val(jam);
-		$('#kode_kelas').val(kd_kelas);
-	
+		
 		$('#simpan').hide();
 		$('#update').show();
 
@@ -201,16 +160,12 @@ $(document).ready(function(){
 		let kode  	 = $('#kode').val();
 		let nama  	 = $('#nama').val();
 		let nip 	 = $('#nip').val();
-		let hari 	 = $('#hari').val();
-		let jam  	 = $('#jam').val();
-		let kd_kelas = $('#kode_kelas').val();
-	
-	
+			
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_pelajaran', kode: kode, nama: nama, nip: nip, hari: hari, jam: jam, kd_kelas: kd_kelas },
+				data: { type: 'update_pelajaran', kode: kode, nama: nama, nip: nip },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');
@@ -249,7 +204,7 @@ $(document).ready(function(){
 				type: 'POST',
 				data: { type: 'select_nip_kegiatan' },
 					success: function(response){
-						let option = '<option> Pilih NIP </option>';
+						let option = '<option value=""> Pilih NIP </option>';
 						let i;
 
 						for (i = 0; i < response.length; i++) {

@@ -22,6 +22,7 @@ class Admin
 
       if (password_verify($password, $userData->password)) {
 
+          $_SESSION['statusLogin'] = 'login';
           $_SESSION['username'] = $userData->username;
           $_SESSION['kewenangan'] = $userData->kewenangan;
           return true;
@@ -36,6 +37,13 @@ class Admin
           return false;
 
     }
+  }
+
+  public function logout()
+  {
+    session_destroy();
+    unset($_SESSION['statusLogin']);
+    return true;
   }
 
 
@@ -80,17 +88,17 @@ class Admin
     return $query;
   }
 
-  function simpan_guru($nip, $nama, $jk, $telp, $email, $alamat, $jabatan)
+  function simpan_guru($nip, $nama, $jk, $gol, $bidang_studi, $status)
   {
      $db    = $this->mysqli->conn;
-     $query = $db->query(" INSERT INTO guru VALUES ('$nip', '$nama', '$jk', '$telp', '$email', '$alamat', 'jabatan')");
+     $query = $db->query(" INSERT INTO guru VALUES ('$nip', '$nama', '$jk', '$gol', '$bidang_studi', '$status')");
      return true;
   }
 
-  function update_guru($nip, $nama, $jk, $telp, $email, $alamat, $jabatan)
+  function update_guru($nip, $nama, $jk, $gol, $bidang_studi, $status)
   {
      $db    = $this->mysqli->conn;
-     $query = $db->query(" UPDATE guru SET nama_guru = '$nama', jk_guru = '$jk', no_telp = '$telp', email = '$email', alamat = '$alamat', jabatan = '$jabatan' WHERE nip = '$nip' ");
+     $query = $db->query(" UPDATE guru SET nama_guru = '$nama', jk_guru = '$jk', gol = '$gol', bidang_studi = '$bidang_studi', status = '$status' WHERE nip = '$nip' ");
      return true;
   }
 
@@ -188,17 +196,17 @@ class Admin
     return $query;
   }
 
-  function simpan_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas)
+  function simpan_pelajaran($kode, $nama, $nip)
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" INSERT INTO mata_pelajaran VALUES ('$kode', '$nama', '$nip', '$hari', '$jam', '$kd_kelas') ");
+    $query = $db->query(" INSERT INTO mata_pelajaran VALUES ('$kode', '$nama', '$nip') ");
     return true;
   }
 
-  function update_pelajaran($kode, $nama, $nip, $hari, $jam, $kd_kelas)
+  function update_pelajaran($kode, $nama, $nip)
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" UPDATE mata_pelajaran SET nama_matpel = '$nama', nip = '$nip', hari = '$hari', jam = '$jam', kd_kelas = '$kd_kelas' WHERE kd_matpel = '$kode' ");
+    $query = $db->query(" UPDATE mata_pelajaran SET nama_matpel = '$nama', nip = '$nip' WHERE kd_matpel = '$kode' ");
     return true;
   }
 
