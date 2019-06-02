@@ -3,13 +3,13 @@
 <div class="row mt-4" id="" style="">
 
 	<div class="col-md-12" id="" style="">
-	
+
 			<h4 class="text-center">Data Kegiatan</h4> <hr>
 
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-			
+
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
 					<tr>
@@ -17,13 +17,12 @@
 						<th colspan="" rowspan="" headers="" scope="">Nama</th>
 						<th colspan="" rowspan="" headers="" scope="">Hari</th>
 						<th colspan="" rowspan="" headers="" scope="">Jam</th>
-						<th colspan="" rowspan="" headers="" scope="">Tempat</th>
 						<th colspan="" rowspan="" headers="" scope="">NIP</th>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php 
+					<?php
 						$data = $objAdmin->show_kegiatan();
 						while ( $a = $data->fetch_object()) { ?>
 
@@ -32,7 +31,6 @@
 					 	<td colspan="" rowspan="" headers=""><?=$a->nama_kegiatan ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->hari_kegiatan ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->jam_kegiatan ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->tempat_kegiatan ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nip ?></td>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
@@ -42,7 +40,7 @@
 					 	</td>
 
 					 </tr>
-					
+
 					<?php } ?>
 				</tbody>
 			</table>
@@ -62,7 +60,7 @@
         </button>
       </div>
       <div class="modal-body" id="modal_body">
-       
+
        <div class="form-group col-xs-5 col-lg-4">
 			<label for="code">KODE KEGIATAN</label>
 		    <input type="number" id="kode" class="form-control" placeholder="KODE" >
@@ -87,20 +85,22 @@
 
 		<div class="form-group col-xs-5 col-lg-4">
 			<label for="code">JAM</label>
-		    <input type="time" id="jam" class="form-control" placeholder="Masukan Jam" >
+		    <!-- <input type="time" id="jam" class="form-control" placeholder="Masukan Jam"  value="16:32:00" /> -->
+				<input type="time" id="jam" value="16:32:00">
 		</div>
 
-		
-		   <div class="form-group col-xs-5 col-lg-6">
+
+		   <!-- <div class="form-group col-xs-5 col-lg-6">
 				<label for="code">TEMPAT</label>
 				<input type="text" id="tempat" class="form-control input-normal" placeholder="Masukan No Telpon" >
-		    </div>
+		    </div> -->
 
 		     <div class="form-group col-xs-5 col-lg-6">
 				<label for="code">NIP</label>
-				<select class="form-control" id="nip">
-					
-				</select>
+				<input type="text" id="nip" class="form-control" placeholder="Masukan Nip" >
+				<!-- <select class="form-control" id="nip">
+
+				</select> -->
 		    </div>
 
       </div>
@@ -114,7 +114,7 @@
 </div>
 
 <script type="text/javascript">
-	
+
 
 $(document).ready(function(){
 
@@ -142,9 +142,15 @@ $(document).ready(function(){
 		let nama  	= $('#nama').val();
 		let hari    = $('#hari').val();
 		let jam 	= $('#jam').val();
-		let tempat  = $('#tempat').val();
+		// let tempat  = $('#tempat').val();
 		let nip 	= $('#nip').val();
-	
+		// var x = document.getElementById("myTime").value;
+		//   document.getElementById("demo").innerHTML = x;
+		//
+		// console.log(jam);
+		// console.log(x);
+		// console.log(nip);
+
 		if ($('#modal_body').find(':input').val() == '') {
 
 			alert('isi field ');
@@ -155,7 +161,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_kegiatan', kode: kode, nama: nama, hari: hari, jam: jam, tempat: tempat, nip: nip },
+				data: { type: 'tambah_kegiatan', kode: kode, nama: nama, hari: hari, jam: jam, nip: nip },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -166,7 +172,7 @@ $(document).ready(function(){
 
 		}
 
-	
+
 
 	}); // simpan
 
@@ -176,7 +182,7 @@ $(document).ready(function(){
 		let nama  	= $(this).data('nama');
 		let hari    = $(this).data('hari');
 		let jam 	= $(this).data('jam');
-		let tempat  = $(this).data('tempat');
+		// let tempat  = $(this).data('tempat');
 		let nip 	= $(this).data('nip');
 
 		$('#myModal').modal('show');
@@ -187,7 +193,7 @@ $(document).ready(function(){
 		$('#nama').val(nama);
 		$('#hari').val(hari);
 		$('#jam').val(jam);
-		$('#tempat').val(tempat);
+		// $('#tempat').val(tempat);
 		$('#nip').val(nip);
 
 		$('#simpan').hide();
@@ -202,14 +208,14 @@ $(document).ready(function(){
 		let nama  	= $('#nama').val();
 		let hari    = $('#hari').val();
 		let jam 	= $('#jam').val();
-		let tempat  = $('#tempat').val();
+		// let tempat  = $('#tempat').val();
 		let nip 	= $('#nip').val();
 
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_kegiatan', kode: kode, nama: nama, hari: hari, jam: jam, tempat: tempat, nip: nip },
+				data: { type: 'update_kegiatan', kode: kode, nama: nama, hari: hari, jam: jam, nip: nip },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');
@@ -252,7 +258,7 @@ $(document).ready(function(){
 						let i;
 
 						for (i = 0; i < response.length; i++) {
-							
+
 							option += '<option value="'+ response[i] +'" >' + response[i] + '</option>';
 
 						}

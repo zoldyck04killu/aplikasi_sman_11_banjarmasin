@@ -119,17 +119,19 @@ class Admin
     return $query;
   }
 
-  function simpan_kegiatan($kode, $nama, $hari, $jam, $tempat, $nip)
+  function simpan_kegiatan($kode, $nama, $hari, $jam, $nip)
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" INSERT INTO kegiatan VALUES ('$kode', '$nama', '$hari', '$jam', '$tempat', '$nip') ");
+    // var_dump($jam);
+    // die();
+    $query = $db->query(" INSERT INTO kegiatan VALUES ('$kode', '$nama', '$hari', '$jam', '$nip') ");
     return true;
   }
 
-  function update_kegiatan($kode, $nama, $hari, $jam, $tempat, $nip)
+  function update_kegiatan($kode, $nama, $hari, $jam, $nip)
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" UPDATE kegiatan SET nama_kegiatan = '$nama', hari_kegiatan = '$hari', jam_kegiatan = '$jam', tempat_kegiatan = '$tempat', nip = '$nip' WHERE kd_kegiatan = '$kode' ");
+    $query = $db->query(" UPDATE kegiatan SET nama_kegiatan = '$nama', hari_kegiatan = '$hari', jam_kegiatan = '$jam',  nip = '$nip' WHERE kd_kegiatan = '$kode' ");
     return true;
   }
 

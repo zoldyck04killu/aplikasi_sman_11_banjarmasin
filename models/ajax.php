@@ -130,10 +130,12 @@
    $nama    = @$_POST['nama'];
    $hari    = @$_POST['hari'];
    $jam     = @$_POST['jam'];
-   $tempat  = @$_POST['tempat'];
+   // $tempat  = @$_POST['tempat'];
    $nip     = @$_POST['nip'];
-
-    $objAdmin->simpan_kegiatan($kode, $nama, $hari, $jam, $tempat, $nip);
+   //
+   // var_dump($jam);
+   // die();
+    $objAdmin->simpan_kegiatan($kode, $nama, $hari, $jam, $nip);
     echo json_encode($res['status'] = true);
 
  }
@@ -144,10 +146,12 @@
    $nama    = @$_POST['nama'];
    $hari    = @$_POST['hari'];
    $jam     = @$_POST['jam'];
-   $tempat  = @$_POST['tempat'];
+   // $tempat  = @$_POST['tempat'];
    $nip     = @$_POST['nip'];
+   // var_dump($jam);
+   // die();
 
-    $objAdmin->update_kegiatan($kode, $nama, $hari, $jam, $tempat, $nip);
+    $objAdmin->update_kegiatan($kode, $nama, $hari, $jam, $nip);
     echo json_encode($res['status'] = true);
 
  }
