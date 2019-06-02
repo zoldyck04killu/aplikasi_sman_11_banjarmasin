@@ -256,4 +256,53 @@
 
  // AJAX REQUEST PELAJARAN
 
+ // AJAX REQUEST ARTIKEL
+
+ elseif (@$_REQUEST['type'] == 'tambah_artikel') 
+ {
+   $no      = @$_POST['no'];
+   $perihal = @$_POST['perihal'];
+   $tgl     = @$_POST['tgl'];
+   $jam     = @$_POST['jam'];
+   $judul   = @$_POST['judul'];
+   $isi     = @$_POST['isi'];
+   $penulis = @$_POST['penulis'];
+   $tujuan  = @$_POST['tujuan'];
+
+   $objAdmin->simpan_artikel($no, $perihal, $tgl, $jam, $judul, $isi, $penulis, $tujuan);
+    echo json_encode($res['status'] = true);
+ }
+
+ elseif (@$_REQUEST['type'] == 'edit_artikel') 
+ {
+   $no = @$_POST['no'];
+   $artikel = $objAdmin->edit_artikel($no)->fetch_object();
+   echo json_encode($artikel);
+ }
+
+ elseif (@$_REQUEST['type'] == 'update_artikel') 
+ {
+   $no      = @$_POST['no'];
+   $perihal = @$_POST['perihal'];
+   $tgl     = @$_POST['tgl'];
+   $jam     = @$_POST['jam'];
+   $judul   = @$_POST['judul'];
+   $isi     = @$_POST['isi'];
+   $penulis = @$_POST['penulis'];
+   $tujuan  = @$_POST['tujuan'];
+
+    $objAdmin->update_artikel($no, $perihal, $tgl, $jam, $judul, $isi, $penulis, $tujuan);
+    echo json_encode($res['status'] = true);
+ }
+
+ elseif (@$_REQUEST['type'] == 'delete_artikel') 
+ {
+   $no = @$_POST['no'];
+   $objAdmin->delete_artikel($no);
+    echo json_encode($res['status'] = true);
+
+ }
+
+ // AJAX REQUEST ARTIKEL
+
 ?>

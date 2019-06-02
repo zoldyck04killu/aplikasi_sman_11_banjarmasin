@@ -51,6 +51,11 @@ elseif (@$_GET['view'] == 'mata-pelajaran')
   include 'view/pelajaran/mata_pelaharan.php';
 }
 
+elseif (@$_GET['view'] == 'data-artikel') 
+{
+  include 'view/artikel/data-artikel.php';
+}
+
 else
 {
   include 'view/404.php';

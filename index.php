@@ -80,7 +80,7 @@ $objAdmin = new Admin($obj);
                       </div>
                     </a>
 
-                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="?view=data-artikel" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Artikel</span>

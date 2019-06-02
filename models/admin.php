@@ -218,6 +218,42 @@ class Admin
   }
 
 
+  public function show_artikel()
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT * FROM artikel ");
+    return $query;
+  }
+
+  public function simpan_artikel($no, $perihal, $tgl, $jam, $judul, $isi, $penulis, $tujuan)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" INSERT INTO artikel VALUES('$no', '$perihal', '$tgl', '$jam', '$judul', '$isi', '$penulis', '$tujuan')");
+    return true;
+  }
+
+  public function edit_artikel($no)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT * FROM artikel WHERE no_art = '$no' ");
+    return $query;
+  }
+
+  public function update_artikel($no, $perihal, $tgl, $jam, $judul, $isi, $penulis, $tujuan)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" UPDATE artikel SET perihal = '$perihal', tgl = '$tgl', jam_art = '$jam', judul = '$judul', isi = '$isi', penulis = '$penulis', tujuan = '$tujuan' WHERE no_art = '$no' ");
+    return true;
+  }
+
+  public function delete_artikel($no)
+  {
+    $db    = $this->mysqli->conn;
+    $db->query("DELETE FROM artikel WHERE no_art = '$no' ");
+    return true;
+  }
+
+
 
 }// end class
 
