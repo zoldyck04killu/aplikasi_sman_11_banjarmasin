@@ -1,10 +1,10 @@
 [syarif]
 Desain
+hak akses
 CRUD:
-  data siswa
+  data siswa [done]
   kegiatan
   nilai
-  hak akses
 
 [aldi]
 CRUD:

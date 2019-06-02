@@ -55,7 +55,24 @@
 
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
-						 		<button class="btn btn-info" id="edit" data-nis="<?=$a->nis_siswa ?>" data-nama="<?=$a->nama_siswa ?>" data-jk="<?=$a->jk_siswa ?>" data-lahir="<?=$a->tempat_lahir ?>" data-tgl="<?=$a->tgl_lahir ?>">Edit</button>
+						 		<button class="btn btn-info" id="edit"
+									data-nis="<?=$a->nis_siswa ?>"
+									data-nama="<?=$a->nama_siswa ?>"
+									data-jk="<?=$a->jk_siswa ?>"
+									data-lahir="<?=$a->tempat_lahir ?>"
+									data-tgl="<?=$a->tgl_lahir ?>"
+									data-agama="<?=$a->agama ?>"
+									data-alamat="<?=$a->alamat ?>"
+									data-telp_rmh="<?=$a->telp_rmh ?>"
+									data-asal_sekolah="<?=$a->asal_sekolah ?>"
+									data-thn_lulus="<?=$a->thn_lulus ?>"
+									data-nama_bpk="<?=$a->nama_bpk ?>"
+									data-kerja_bpk="<?=$a->kerja_bpk ?>"
+									data-nama_ibu="<?=$a->nama_ibu ?>"
+									data-kerja_ibu="<?=$a->kerja_ibu ?>"
+								>
+									Edit
+								</button>
 						 		<button class="btn btn-danger" id="hapus" data-nis="<?=$a->nis_siswa ?>" >Hapus</button>
 					 		</div>
 					 	</td>
@@ -236,6 +253,16 @@ $(document).ready(function(){
 		let jk    = $(this).data('jk');
 		let lahir = $(this).data('lahir');
 		let tgl   = $(this).data('tgl');
+		let agama   =  $(this).data('agama');
+		let alamat   =  $(this).data('alamat');
+		let telp_rmh   = $(this).data('telp_rmh');
+		let asal_sekolah   =  $(this).data('asal_sekolah');
+		let thn_lulus   =  $(this).data('thn_lulus');
+		let nama_bpk   =  $(this).data('nama_bpk');
+		let kerja_bpk   =  $(this).data('kerja_bpk');
+		let nama_ibu   =  $(this).data('nama_ibu');
+		let kerja_ibu   =  $(this).data('kerja_ibu');
+
 
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Edit Data');
@@ -246,6 +273,15 @@ $(document).ready(function(){
 		$('#jk').val(jk);
 		$('#lahir').val(lahir);
 		$('#tgl').val(tgl);
+		$('#agama').val(agama);
+		$('#alamat').val(alamat);
+		$('#telp_rmh').val(telp_rmh);
+	 	$('#asal_sekolah').val(asal_sekolah);
+	 	$('#thn_lulus').val(thn_lulus);
+		$('#nama_bpk').val(nama_bpk);
+		$('#kerja_bpk').val(kerja_bpk);
+		$('#nama_ibu').val(nama_ibu);
+		$('#kerja_ibu').val(kerja_ibu);
 
 		$('#simpan').hide();
 		$('#update').show();
@@ -260,12 +296,21 @@ $(document).ready(function(){
 		let jk    = $('#jk').val();
 		let lahir = $('#lahir').val();
 		let tgl   = $('#tgl').val();
-
+		let agama   = $('#agama').val();
+		let alamat   = $('#alamat').val();
+		let telp_rmh   = $('#telp_rmh').val();
+		let asal_sekolah   = $('#asal_sekolah').val();
+		let thn_lulus   = $('#thn_lulus').val();
+		let nama_bpk   = $('#nama_bpk').val();
+		let kerja_bpk   = $('#kerja_bpk').val();
+		let nama_ibu   = $('#nama_ibu').val();
+		let kerja_ibu   = $('#kerja_ibu').val();
+		
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl },
+				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, nama_bpk: nama_bpk, kerja_bpk: kerja_bpk, nama_ibu: nama_ibu, kerja_ibu: kerja_ibu  },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');

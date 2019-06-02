@@ -21,7 +21,7 @@ class Admin
     if ($cekUser == 1) {
 
       if (password_verify($password, $userData->password)) {
-        
+
           $_SESSION['username'] = $userData->username;
           $_SESSION['kewenangan'] = $userData->kewenangan;
           return true;
@@ -53,10 +53,12 @@ class Admin
   	return true;
   }
 
-  function update_siswa($nis, $nama, $jk, $lahir, $tgl)
+  function update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" UPDATE siswa SET nama_siswa = '$nama', jk_siswa = '$jk', tempat_lahir = '$lahir', tgl_lahir = '$tgl' WHERE nis_siswa = '$nis' ");
+  	$query = $db->query(" UPDATE siswa SET nama_siswa = '$nama', jk_siswa = '$jk', tempat_lahir = '$lahir', tgl_lahir = '$tgl',
+                      agama='$agama', alamat='$alamat', telp_rmh='$telp_rmh', asal_sekolah='$asal_sekolah', thn_lulus='$thn_lulus',
+                      nama_bpk='$nama_bpk', kerja_bpk='$kerja_bpk', nama_ibu='$nama_ibu', kerja_ibu='$kerja_ibu' WHERE nis_siswa = '$nis' ");
   	return true;
   }
 
