@@ -77,7 +77,36 @@ class Admin
   	return true;
   }
 
+// Nilai
+function show_nilai()
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" SELECT * FROM nilai ");
+  return $query;
+}
 
+function simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" INSERT INTO nilai (nis_siswa, nama_leng, matpel, semester, kelas, tugas, uts, uas, rata, nilai)
+    VALUES ('$nis', '$nama', '$matpel', '$semester', '$kelas', '$tugas', '$uts', '$uas', '$rata', '$nilai') ");
+  return true;
+}
+
+function update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" UPDATE nilai SET nis_siswa='$nis', nama_leng='$nama', matpel='$matpel', semester='$semester',
+          kelas='$kelas', tugas='$tugas', uts='$uts', uas='$uas', rata='$rata', nilai='$nilai' WHERE kd_nilai = '$kd_nilai' ");
+  return true;
+}
+
+function delete_nilai($kd_nilai)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" DELETE FROM nilai WHERE kd_nilai = '$kd_nilai' ");
+  return true;
+}
 
 
 

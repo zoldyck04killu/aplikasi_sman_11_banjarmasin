@@ -10,7 +10,7 @@ else if (@$_GET['view'] == 'login')
 	include 'view/login.php';
 }
 
-elseif (@$_GET['view'] == 'logout') 
+elseif (@$_GET['view'] == 'logout')
 {
   $objAdmin->logout();
   echo '<script> window.location="?view=home" </script>';
@@ -29,8 +29,10 @@ elseif (@$_GET['view'] == 'data-siswa')
 {
   include 'view/siswa/data-siswa.php';
 }
-
-
+elseif (@$_GET['view'] == 'data-nilai')
+{
+  include 'view/nilai/data-nilai.php';
+}
 elseif (@$_GET['view'] == 'data-guru')
 {
 	include 'view/guru/data-guru.php';
@@ -51,7 +53,7 @@ elseif (@$_GET['view'] == 'mata-pelajaran')
   include 'view/pelajaran/mata_pelaharan.php';
 }
 
-elseif (@$_GET['view'] == 'data-artikel') 
+elseif (@$_GET['view'] == 'data-artikel')
 {
   include 'view/artikel/data-artikel.php';
 }

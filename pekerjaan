@@ -1,10 +1,11 @@
 [syarif]
-Desain
-hak akses
+Desain halaman utama
+hak akses ada 3 admin web, admin, wali siswa
+data siswa per kelas
 CRUD:
   data siswa [done]
   kegiatan [done]
-  nilai
+  nilai [done]
 
 [aldi]
 CRUD:

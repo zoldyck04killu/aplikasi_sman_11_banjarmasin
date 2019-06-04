@@ -72,7 +72,7 @@
     $gol            = @$_POST['gol'];
     $bidang_studi   = @$_POST['bidang_studi'];
     $status         = @$_POST['status'];
-   
+
     $objAdmin->simpan_guru($nip, $nama, $jk, $gol, $bidang_studi, $status);
     echo json_encode($res['status'] = true);
 
@@ -226,7 +226,7 @@
    $kode      = @$_POST['kode'];
    $nama      = @$_POST['nama'];
    $nip       = @$_POST['nip'];
-  
+
    $objAdmin->simpan_pelajaran($kode, $nama, $nip);
 
    echo json_encode($res['status'] = true);
@@ -238,7 +238,7 @@
   $kode      = @$_POST['kode'];
   $nama      = @$_POST['nama'];
   $nip       = @$_POST['nip'];
- 
+
   $objAdmin->update_pelajaran($kode, $nama, $nip);
 
   echo json_encode($res['status'] = true);
@@ -258,7 +258,7 @@
 
  // AJAX REQUEST ARTIKEL
 
- elseif (@$_REQUEST['type'] == 'tambah_artikel') 
+ elseif (@$_REQUEST['type'] == 'tambah_artikel')
  {
    $no      = @$_POST['no'];
    $perihal = @$_POST['perihal'];
@@ -273,14 +273,14 @@
     echo json_encode($res['status'] = true);
  }
 
- elseif (@$_REQUEST['type'] == 'edit_artikel') 
+ elseif (@$_REQUEST['type'] == 'edit_artikel')
  {
    $no = @$_POST['no'];
    $artikel = $objAdmin->edit_artikel($no)->fetch_object();
    echo json_encode($artikel);
  }
 
- elseif (@$_REQUEST['type'] == 'update_artikel') 
+ elseif (@$_REQUEST['type'] == 'update_artikel')
  {
    $no      = @$_POST['no'];
    $perihal = @$_POST['perihal'];
@@ -295,7 +295,7 @@
     echo json_encode($res['status'] = true);
  }
 
- elseif (@$_REQUEST['type'] == 'delete_artikel') 
+ elseif (@$_REQUEST['type'] == 'delete_artikel')
  {
    $no = @$_POST['no'];
    $objAdmin->delete_artikel($no);
@@ -304,5 +304,51 @@
  }
 
  // AJAX REQUEST ARTIKEL
+
+ elseif (@$_REQUEST['type'] == 'tambah_nilai') {
+
+      $nis   = $_POST['nis'];
+      $nama  = $_POST['nama'];
+      $matpel    = $_POST['matpel'];
+      $semester = $_POST['semester'];
+      $kelas = $_POST['kelas'];
+      $tugas   = $_POST['tugas'];
+      $uts   = $_POST['uts'];
+      $uas   = $_POST['uas'];
+      $rata   = $_POST['rata'];
+      $nilai   = $_POST['nilai'];
+
+      $objAdmin->simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai);
+
+      echo json_encode($res['status'] = true);
+
+ }elseif (@$_REQUEST['type'] == 'update_nilai') {
+
+   $kd_nilai   = $_POST['kd_nilai'];
+   $nis   = $_POST['nis'];
+   $nama  = $_POST['nama'];
+   $matpel    = $_POST['matpel'];
+   $semester = $_POST['semester'];
+   $kelas = $_POST['kelas'];
+   $tugas   = $_POST['tugas'];
+   $uts   = $_POST['uts'];
+   $uas   = $_POST['uas'];
+   $rata   = $_POST['rata'];
+   $nilai   = $_POST['nilai'];
+
+      $objAdmin->update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai);
+      echo json_encode($res['status'] = true);
+
+ }elseif (@$_REQUEST['type'] == 'delete_nilai') {
+
+     $kd_nilai   = $_POST['kd_nilai'];
+
+     $objAdmin->delete_nilai($kd_nilai);
+    echo json_encode($res['status'] = true);
+
+ }
+
+ // AJAX REQUEST NILAI
+
 
 ?>
