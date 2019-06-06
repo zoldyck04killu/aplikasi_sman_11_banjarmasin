@@ -4,7 +4,18 @@ if (@$_GET['view'] == '' || @$_GET['view'] == 'home')
 {
     include 'view/home.php';
 }
-
+else if (@$_GET['view'] == 'beranda')
+{
+	include 'view/beranda.php';
+}
+else if (@$_GET['view'] == 'kontak')
+{
+	include 'view/kontak.php';
+}
+else if (@$_GET['view'] == 'sejarah')
+{
+	include 'view/sejarah.php';
+}
 else if (@$_GET['view'] == 'login')
 {
 	include 'view/login.php';

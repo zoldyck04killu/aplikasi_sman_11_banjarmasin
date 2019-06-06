@@ -1,7 +1,8 @@
 [syarif]
-Desain halaman utama
-hak akses ada 3 admin web, admin, wali siswa
-data siswa per kelas
+Desain halaman utama [donse]
+Kontak [done]
+beranda [done]
+sejarah [done]
 CRUD:
   data siswa [done]
   kegiatan [done]
@@ -12,5 +13,9 @@ CRUD:
   Guru [done]
   mata pelajaran [done]
   artikel [done]
-  sejarah
   login [DONE]
+
+
+  hak akses ada 3 admin web, admin, wali siswa
+  data siswa pertama tampilkan per kelas baru muncul siswa yang ada dikelas tersebut
+  artikel orang tua

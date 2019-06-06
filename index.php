@@ -41,13 +41,13 @@ $objAdmin = new Admin($obj);
         <span class="navbar-text">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="?view=beranda">Beranda <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tentang</a>
+              <a class="nav-link" href="?view=sejarah">Tentang</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Kontak</a>
+              <a class="nav-link" href="?view=kontak">Kontak</a>
             </li>
             <li class="nav-item">
               <?php if (@$_SESSION['statusLogin'] == 'login') { ?>
@@ -67,13 +67,13 @@ $objAdmin = new Admin($obj);
                 <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
                     <span style="color:white;">MAIN MENU</span>
                 </li>
-                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="?view=home" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Home</span>
                       </div>
                     </a>
-                    <a href="" aria-expanded="false"  class="bg-dark list-group-item list-group-item-action flex-column align-items-start " >
+                    <a href="?view=sejarah" aria-expanded="false"  class="bg-dark list-group-item list-group-item-action flex-column align-items-start " >
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Sejarah</span>
