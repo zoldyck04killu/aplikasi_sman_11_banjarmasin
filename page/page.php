@@ -8,6 +8,10 @@ else if (@$_GET['view'] == 'beranda')
 {
 	include 'view/beranda.php';
 }
+else if (@$_GET['view'] == 'register')
+{
+	include 'view/register.php';
+}
 else if (@$_GET['view'] == 'kontak')
 {
 	include 'view/kontak.php';

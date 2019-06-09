@@ -13,6 +13,18 @@ class Admin
     $this->mysqli = $mysqli;
   }
 
+  function register($username, $password_hash,$hak_akses)
+  {
+    $db = $this->mysqli->conn;
+    // $tanggal = date('Y/m/d');
+    $register = $db->query("INSERT INTO admin (username, password,kewenangan) VALUES ('$username', '$password_hash', '$hak_akses')") or die ($db->error);
+    if ($register) {
+        return true;
+    } else {
+        return false; // password salah
+    }
+  }
+
   public function login($username, $password)
   {
     $db     = $this->mysqli->conn;

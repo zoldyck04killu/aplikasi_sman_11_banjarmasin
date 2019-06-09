@@ -50,6 +50,9 @@ $objAdmin = new Admin($obj);
               <a class="nav-link" href="?view=kontak">Kontak</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="?view=register">register</a>
+            </li>
+            <li class="nav-item">
               <?php if (@$_SESSION['statusLogin'] == 'login') { ?>
                 <a class="nav-link" href="?view=logout">Logout</a>
                 <?php }else{ ?>

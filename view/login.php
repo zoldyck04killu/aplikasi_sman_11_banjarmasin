@@ -6,7 +6,7 @@
         Login
       </div>
       <div class="card-body">
-        
+
         <form action="" method="POST" accept-charset="utf-8">
           <div class="form-group">
             <label>User</label>
@@ -22,25 +22,25 @@
         </form>
 
       </div>
-    </div> 
-   
+    </div>
+
   </div>
 </div>
 
 
 </div>
 
-<?php 
+<?php
 
 if (isset($_POST['login'])) {
-  
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     $login = $objAdmin->login($username, $password);
 
     if ($login) {
-        
+
         echo '<script> alert("Login Berhasil"); window.location="?view=home" </script>';
     }else{
 
