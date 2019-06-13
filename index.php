@@ -40,18 +40,22 @@ $objAdmin = new Admin($obj);
         </div>
         <span class="navbar-text">
           <ul class="navbar-nav mr-auto">
+            <?php if (@$_SESSION['statusLogin'] == 'login') { ?>
             <li class="nav-item active">
               <a class="nav-link" href="?view=beranda">Beranda <span class="sr-only">(current)</span></a>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="?view=sejarah">Tentang</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="?view=kontak">Kontak</a>
             </li>
+            <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
             <li class="nav-item">
               <a class="nav-link" href="?view=register">register</a>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <?php if (@$_SESSION['statusLogin'] == 'login') { ?>
                 <a class="nav-link" href="?view=logout">Logout</a>
@@ -83,7 +87,7 @@ $objAdmin = new Admin($obj);
                       </div>
                     </a>
 
-                    <a href="?view=data-artikel" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="?view=artikel-view" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Artikel</span>
@@ -95,13 +99,13 @@ $objAdmin = new Admin($obj);
                         <span class="menu-collapsed">Kontak</span>
                       </div>
                     </a>
-                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <!-- <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Info</span>
                       </div>
-                    </a>
-                    <a href="?view=data-siswa" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    </a> -->
+                    <!-- <a href="?view=data-siswa" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Data Siswa</span>
@@ -130,7 +134,7 @@ $objAdmin = new Admin($obj);
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Nilai</span>
                     </div>
-                </a>
+                </a> -->
 
 
             </ul>

@@ -5,11 +5,11 @@
 	<div class="col-md-12" id="" style="">
 
 			<h4 class="text-center">Data Kegiatan</h4> <hr>
-
+			<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-
+			<?php } ?>
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
 					<tr>
@@ -18,7 +18,9 @@
 						<th colspan="" rowspan="" headers="" scope="">Hari</th>
 						<th colspan="" rowspan="" headers="" scope="">Jam</th>
 						<th colspan="" rowspan="" headers="" scope="">NIP</th>
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
+						<?php } ?>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,13 +34,14 @@
 					 	<td colspan="" rowspan="" headers=""><?=$a->hari_kegiatan ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->jam_kegiatan ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nip ?></td>
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit" data-kode="<?=$a->kd_kegiatan ?>" data-nama="<?=$a->nama_kegiatan ?>" data-hari="<?=$a->hari_kegiatan ?>" data-jam="<?=$a->jam_kegiatan ?>" data-tempat="<?=$a->tempat_kegiatan ?>" data-nip="<?=$a->nip ?>">Edit</button>
 						 		<button class="btn btn-danger" id="hapus" data-kode="<?=$a->kd_kegiatan ?>" >Hapus</button>
 					 		</div>
 					 	</td>
-
+						<?php } ?>
 					 </tr>
 
 					<?php } ?>

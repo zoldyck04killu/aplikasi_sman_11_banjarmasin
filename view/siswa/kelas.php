@@ -1,47 +1,31 @@
 <div class="header-hal">
-    <a href="?view=kelas">
+	<h2>
+		Pilih Kelas :
+	</h2>
+    <a href="?view=data-siswa&kelas=10">
       <div class="menu-utama menu1">
-        DATA SISWA
+        10
       </div>
     </a>
 
-    <a href="?view=data-guru">
+    <a href="?view=data-siswa&kelas=11">
       <div class="menu-utama menu2">
-        DATA GURU
+        11
       </div>
     </a>
 
-    <a href="?view=jadwal">
+    <a href="?view=data-siswa&kelas=12">
       <div class="menu-utama menu3">
-        JADWAL
+        12
       </div>
     </a>
-
-    <a href="?view=data-nilai">
-      <div class="menu-utama menu4">
-        NILAI
-      </div>
-    </a>
-
-    <a href="?view=data-kegiatan">
-      <div class="menu-utama menu5">
-        KEGIATAN
-      </div>
-    </a>
-    <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
-    <a href="?view=mata-pelajaran">
-      <div class="menu-utama menu5">
-        PELAJARAN
-      </div>
-    </a>
-    <?php } ?>
 
 </div>
 
 <style media="screen">
   .menu-utama
   {
-    margin: 10px;
+    margin: 70px;
     display: inline-block;
     font-size: 1.5em;
     color: rgb(255, 255, 255);

@@ -5,11 +5,11 @@
 	<div class="col-md-12" id="" style="">
 
 			<h4 class="text-center">Data Nilai</h4> <hr>
-
+			<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-
+			<?php } ?>
 			<div class="table-responsive" >
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
@@ -24,8 +24,9 @@
 						<th colspan="" rowspan="" headers="" scope="">UAS </th>
 						<th colspan="" rowspan="" headers="" scope="">Rata-Rata </th>
 						<th colspan="" rowspan="" headers="" scope="">Nilai </th>
-
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
+						<?php } ?>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +45,7 @@
 						<td colspan="" rowspan="" headers=""><?=$a->uas ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->rata ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->nilai ?></td>
-
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit"
@@ -65,7 +66,7 @@
 						 		<button class="btn btn-danger" id="hapus" data-kd_nilai="<?=$a->kd_nilai ?>" >Hapus</button>
 					 		</div>
 					 	</td>
-
+						<?php } ?>
 					 </tr>
 
 					<?php } ?>

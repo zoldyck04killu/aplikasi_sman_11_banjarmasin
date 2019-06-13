@@ -41,7 +41,7 @@ if (isset($_POST['login'])) {
 
     if ($login) {
 
-        echo '<script> alert("Login Berhasil"); window.location="?view=home" </script>';
+        echo '<script> alert("Login Berhasil"); window.location="?view=beranda" </script>';
     }else{
 
         echo '<script> alert("Login Gagal") </script>';

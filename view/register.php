@@ -20,9 +20,9 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Hak Akses</label>
             <select class="form-control" id="exampleFormControlSelect1" name="hak_akses">
-              <option value="admin_web">Admin Web</option>
               <option value="admin">Admin</option>
               <option value="wali">Wali Siswa</option>
+              <option value="siswa">Siswa</option>
             </select>
           </div>
            <div class="form-group">

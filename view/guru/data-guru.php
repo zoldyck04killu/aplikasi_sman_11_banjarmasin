@@ -3,13 +3,14 @@
 <div class="row mt-4" id="" style="">
 
 	<div class="col-md-12" id="" style="">
-	
+
 			<h4 class="text-center">Data Guru</h4> <hr>
 
+			<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-			
+			<?php } ?>
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
 					<tr>
@@ -19,11 +20,13 @@
 						<th colspan="" rowspan="" headers="" scope="">Golongan</th>
 						<th colspan="" rowspan="" headers="" scope="">Bidang Studi</th>
 						<th colspan="" rowspan="" headers="" scope="">Status</th>
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
+						<?php } ?>
 					</tr>
 				</thead>
 				<tbody>
-					<?php 
+					<?php
 						$data = $objAdmin->show_guru();
 						while ( $a = $data->fetch_object()) { ?>
 
@@ -34,15 +37,16 @@
 					 	<td colspan="" rowspan="" headers=""><?=$a->gol ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->bidang_studi ?></td>
 					 	<td colspan="" rowspan="" headers=""><?php echo $a->status == '1' ? 'AKTIF' : 'NONAKTIF' ?></td>
-					 	<td colspan="" rowspan="" headers="">
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
+						<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit" data-nip="<?=$a->nip ?>" data-nama="<?=$a->nama_guru ?>" data-jk="<?=$a->jk_guru ?>" data-gol="<?=$a->gol ?>" data-bidang="<?=$a->bidang_studi ?>" data-status="<?=$a->status ?>">Edit</button>
 						 		<button class="btn btn-danger" id="hapus" data-nip="<?=$a->nip ?>" >Hapus</button>
 					 		</div>
 					 	</td>
-
+						<?php } ?>
 					 </tr>
-					
+
 					<?php } ?>
 				</tbody>
 			</table>
@@ -62,7 +66,7 @@
         </button>
       </div>
       <div class="modal-body" id="modal_body">
-       
+
        <div class="form-group col-xs-5 col-lg-4">
 			<label for="code">NIP</label>
 		    <input type="number" id="nip" class="form-control" placeholder="Masukan NIP" >
@@ -112,7 +116,7 @@
 </div>
 
 <script type="text/javascript">
-	
+
 
 $(document).ready(function(){
 
@@ -161,7 +165,7 @@ $(document).ready(function(){
 
 		}
 
-	
+
 
 	}); // simpan
 
@@ -183,7 +187,7 @@ $(document).ready(function(){
 		$('#gol').val(gol);
 		$('#bidang_studi').val(bidang);
 		$('#status').val(status);
-		
+
 		$('#simpan').hide();
 		$('#update').show();
 

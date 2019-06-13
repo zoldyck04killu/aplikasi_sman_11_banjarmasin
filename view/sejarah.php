@@ -10,7 +10,28 @@
       <div class="menu-utama menu2">
         <h3>Visi dan Misi SMAN 11 Banjarmasin</h3>
         <p>
-          Visi dan Misi SMAN 11 Banjarmasin adalah ..............
+          <p>
+            <h4>
+              VISI
+            </h4>
+            Terwujudnya Lulusan Yang Cerdas, Terampil, Dengan Dilandasi Iman & Taqwa.
+          </p>
+          <p>
+            <h4>
+              MISI
+            </h4>
+            <ul>
+              <li>
+                Menciptakan Lingkungan Pembelajaran Yang Kondusif Dalam Upaya Meningkatkan Mutu Pembelajaran
+              </li>
+              <li>
+                Membentuk Peserta Didik Yang Berahlak Dan Berbudi Pekerti Yang Luhur
+              </li>
+              <li>
+                Meningkatkan Komitmen Seluruh Tenaga Kependidikan Terhadap Tugas Pokok Dan Fungsinya Supaya Prestasi Akademik Meningkat.
+              </li>
+            </ul>
+          </p>
         </p>
       </div>
 </div>
@@ -21,7 +42,7 @@
   {
     margin: 10px;
     font-size: 1.5em;
-    height: 200px;
+    /* height: 200px; */
     width: 97%;
     text-align: justify;
     border-radius: 10px 10px;

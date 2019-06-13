@@ -350,5 +350,43 @@
 
  // AJAX REQUEST NILAI
 
+ // AJAX REQUEST jadwal
+
+  if (@$_REQUEST['type'] == 'tambah_jadwal') {
+
+       $kode   = $_POST['kode'];
+       $hari  = $_POST['hari'];
+       $jam    = $_POST['jam'];
+       $waktu = $_POST['waktu'];
+       $kelas = $_POST['kelas'];
+       $matpel   = $_POST['matpel'];
+       $nama_guru   = $_POST['nama_guru'];
+
+       $objAdmin->simpan_jadwal($kode, $hari, $jam, $waktu, $kelas, $matpel, $nama_guru);
+
+       echo json_encode($res['status'] = true);
+
+  }elseif (@$_REQUEST['type'] == 'update_jadwal') {
+
+    $kode   = $_POST['kode'];
+    $hari  = $_POST['hari'];
+    $jam    = $_POST['jam'];
+    $waktu = $_POST['waktu'];
+    $kelas = $_POST['kelas'];
+    $matpel   = $_POST['matpel'];
+    $nama_guru   = $_POST['nama_guru'];
+
+       $objAdmin->update_jadwal($kode, $hari, $jam, $waktu, $kelas, $matpel, $nama_guru);
+       echo json_encode($res['status'] = true);
+
+  }elseif (@$_REQUEST['type'] == 'delete_jadwal') {
+
+      $kode   = $_POST['kode'];
+
+      $objAdmin->delete_jadwal($kode);
+     echo json_encode($res['status'] = true);
+
+  }
+
 
 ?>

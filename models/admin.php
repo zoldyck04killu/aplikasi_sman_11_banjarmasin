@@ -59,10 +59,10 @@ class Admin
   }
 
 
-  function show_siswa()
+  function show_siswa($kelas)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" SELECT * FROM siswa ");
+  	$query = $db->query(" SELECT * FROM siswa where status = '$kelas' ");
   	return $query;
   }
 
@@ -294,6 +294,35 @@ function delete_nilai($kd_nilai)
     return true;
   }
 
+// Jadwal
+
+function show_jadwal()
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" SELECT * FROM jadwal  ");
+  return $query;
+}
+
+function simpan_jadwal($kode, $hari, $jam, $waktu, $kelas, $matpel, $nama_guru)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" INSERT INTO jadwal VALUES ('$kode', '$hari', '$jam', '$waktu', '$kelas', '$matpel', '$nama_guru') ");
+  return true;
+}
+
+function update_jadwal($kode, $hari, $jam, $waktu, $kelas, $matpel, $nama_guru)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" UPDATE jadwal SET kd_jadwal = '$kode', hari_j = '$hari', jam_j = '$jam', waktu = '$waktu', kelas = '$kelas', matpel = '$matpel', nama_guru = '$nama_guru' WHERE kd_jadwal = '$kode' ");
+  return true;
+}
+
+function delete_jadwal($kode)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" DELETE FROM jadwal WHERE kd_jadwal = '$kode' ");
+  return true;
+}
 
 
 }// end class

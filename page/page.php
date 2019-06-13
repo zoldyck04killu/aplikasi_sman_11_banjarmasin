@@ -8,6 +8,23 @@ else if (@$_GET['view'] == 'beranda')
 {
 	include 'view/beranda.php';
 }
+
+else if (@$_GET['view'] == 'jadwal')
+{
+	include 'view/jadwal/data-jadwal.php';
+}
+else if (@$_GET['view'] == 'artikel-view')
+{
+	include 'view/artikel/artikel-view.php';
+}
+else if (@$_GET['view'] == 'artikel-pengumuman')
+{
+	include 'view/artikel/artikel-pengumuman.php';
+}
+else if (@$_GET['view'] == 'artikel-kegiatan')
+{
+	include 'view/artikel/artikel-kegiatan.php';
+}
 else if (@$_GET['view'] == 'register')
 {
 	include 'view/register.php';
@@ -19,6 +36,10 @@ else if (@$_GET['view'] == 'kontak')
 else if (@$_GET['view'] == 'sejarah')
 {
 	include 'view/sejarah.php';
+}
+else if (@$_GET['view'] == 'kelas')
+{
+	include 'view/siswa/kelas.php';
 }
 else if (@$_GET['view'] == 'login')
 {

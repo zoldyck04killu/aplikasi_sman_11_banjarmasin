@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2019 at 10:08 PM
+-- Generation Time: Jun 13, 2019 at 03:01 AM
 -- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.5
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,7 +56,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `kewenangan`) VALUES
-(1, 'admin', '$2y$10$V4wMsjOfzBChjD3koGQNOeFOjMGOAhXPVPUauACoYm03ix/gAeSfy', 'admin');
+(1, 'admin', '$2y$10$V4wMsjOfzBChjD3koGQNOeFOjMGOAhXPVPUauACoYm03ix/gAeSfy', 'admin'),
+(2, 'bobo', '$2y$10$SU5dSNNJ80MPFkXc6ZqLkuuw8kQJW01xTjlMQGCpV.ABZOcYxzvZe', 'wali');
 
 -- --------------------------------------------------------
 
@@ -98,13 +99,20 @@ CREATE TABLE `guru` (
 
 CREATE TABLE `jadwal` (
   `kd_jadwal` int(2) NOT NULL,
-  `hari_j` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hari_j` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jam_j` int(2) NOT NULL,
   `waktu` time NOT NULL,
-  `kelas` int(2) NOT NULL,
+  `kelas` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `matpel` int(20) NOT NULL,
   `nama_guru` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`kd_jadwal`, `hari_j`, `jam_j`, `waktu`, `kelas`, `matpel`, `nama_guru`) VALUES
+(1, 'Selasa', 4, '00:00:00', 'A', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +133,8 @@ CREATE TABLE `kegiatan` (
 --
 
 INSERT INTO `kegiatan` (`kd_kegiatan`, `nama_kegiatan`, `hari_kegiatan`, `jam_kegiatan`, `nip`) VALUES
-(1, 'Menyapu', 'Selasa', '00:12', 1111);
+(1, 'Menyapu asasda', 'rabu', '02:03:00', 1111),
+(2, 'sepakbola', 'selasa', '15:50:00', 1231231);
 
 -- --------------------------------------------------------
 
@@ -159,6 +168,13 @@ CREATE TABLE `nilai` (
   `nilai` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`kd_nilai`, `nis_siswa`, `nama_leng`, `matpel`, `semester`, `kelas`, `tugas`, `uts`, `uas`, `rata`, `nilai`) VALUES
+(1, 323423, 'dfsfce', 3, 3, '4', 45, 45, 45, 45, 90);
+
 -- --------------------------------------------------------
 
 --
@@ -179,17 +195,17 @@ CREATE TABLE `siswa` (
   `nama_bpk` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kerja_bpk` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_ibu` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kerja_ibu` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
+  `kerja_ibu` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nis_siswa`, `nama_siswa`, `jk_siswa`, `tempat_lahir`, `tgl_lahir`, `agama`, `alamat`, `telp_rmh`, `asal_sekolah`, `thn_lulus`, `nama_bpk`, `kerja_bpk`, `nama_ibu`, `kerja_ibu`) VALUES
-('123', 'tes', 'p', 'asd', '2019-06-07', '', '', 0, '', 0, '', '', '', ''),
-('123456', 'aaa', 'l', 'barabai', '2019-05-15', 'Islam', 'jl mahligai', 9786745, 'sssss', 2012, 'asas', 'asas', 'asas', 'asasas'),
-('7777', 'Muhammad Aldi ', 'l', 'Banjarmasin', '2019-05-10', '', '', 0, '', 0, '', '', '', '');
+INSERT INTO `siswa` (`nis_siswa`, `nama_siswa`, `jk_siswa`, `tempat_lahir`, `tgl_lahir`, `agama`, `alamat`, `telp_rmh`, `asal_sekolah`, `thn_lulus`, `nama_bpk`, `kerja_bpk`, `nama_ibu`, `kerja_ibu`, `status`) VALUES
+('123', 'tes', 'p', 'asd', '2019-06-07', 'Islam', 'asada', 8685630, 'dvdf', 2012, 'casx', 'asas', 'dcsdcs', 'assas', '12'),
+('123456', 'aaa', 'l', 'barabai', '2019-05-15', 'Islam', 'jl mahligai', 9786745, 'sssss', 2012, 'asas', 'asas', 'asas', 'asasas', '11');
 
 -- --------------------------------------------------------
 
@@ -225,6 +241,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`nip`);
+
+--
+-- Indexes for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`kd_jadwal`);
 
 --
 -- Indexes for table `kegiatan`
@@ -264,7 +286,7 @@ ALTER TABLE `wali`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
@@ -276,7 +298,7 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `kd_nilai` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_nilai` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wali`

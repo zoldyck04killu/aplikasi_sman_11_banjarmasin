@@ -6,10 +6,11 @@
 
 			<h4 class="text-center">Data Siswa</h4> <hr>
 
+			<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-
+			<?php } ?>
 			<div class="table-responsive" >
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
@@ -28,13 +29,17 @@
 						<th colspan="" rowspan="" headers="" scope="">Kerja Bapak </th>
 						<th colspan="" rowspan="" headers="" scope="">Nama Ibu </th>
 						<th colspan="" rowspan="" headers="" scope="">Kerja Ibu </th>
+						<th colspan="" rowspan="" headers="" scope="">Kelas </th>
 
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
+						<?php }  ?>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-						$data = $objAdmin->show_siswa();
+						$kelas = $_GET['kelas'];
+						$data = $objAdmin->show_siswa($kelas);
 						while ( $a = $data->fetch_object()) { ?>
 
 					 <tr>
@@ -52,7 +57,9 @@
 						<td colspan="" rowspan="" headers=""><?=$a->kerja_bpk ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->nama_ibu ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->kerja_ibu ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
 
+						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit"
@@ -76,7 +83,7 @@
 						 		<button class="btn btn-danger" id="hapus" data-nis="<?=$a->nis_siswa ?>" >Hapus</button>
 					 		</div>
 					 	</td>
-
+						<?php } ?>
 					 </tr>
 
 					<?php } ?>
@@ -305,7 +312,7 @@ $(document).ready(function(){
 		let kerja_bpk   = $('#kerja_bpk').val();
 		let nama_ibu   = $('#nama_ibu').val();
 		let kerja_ibu   = $('#kerja_ibu').val();
-		
+
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
