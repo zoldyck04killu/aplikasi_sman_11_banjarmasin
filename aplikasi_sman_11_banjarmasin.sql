@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2019 at 03:01 AM
+-- Generation Time: Jun 13, 2019 at 03:21 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
   `id_admin` int(50) NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kewenangan` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL
+  `kewenangan` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -57,7 +57,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `kewenangan`) VALUES
 (1, 'admin', '$2y$10$V4wMsjOfzBChjD3koGQNOeFOjMGOAhXPVPUauACoYm03ix/gAeSfy', 'admin'),
-(2, 'bobo', '$2y$10$SU5dSNNJ80MPFkXc6ZqLkuuw8kQJW01xTjlMQGCpV.ABZOcYxzvZe', 'wali');
+(2, 'bobo', '$2y$10$SU5dSNNJ80MPFkXc6ZqLkuuw8kQJW01xTjlMQGCpV.ABZOcYxzvZe', 'wali'),
+(3, 'admin_web', '$2y$10$bJx.ypwn8Djh4K1ZGYaAtuOKnZusHM2FhY66aJ7b.oOw2zcGqjoLK', 'admin_web');
 
 -- --------------------------------------------------------
 
@@ -286,7 +287,7 @@ ALTER TABLE `wali`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`

@@ -41,9 +41,13 @@ $objAdmin = new Admin($obj);
         <span class="navbar-text">
           <ul class="navbar-nav mr-auto">
             <?php if (@$_SESSION['statusLogin'] == 'login') { ?>
+              <?php if (@$_SESSION['kewenangan'] == 'admin' || @$_SESSION['kewenangan'] == 'wali' ) { ?>
+
             <li class="nav-item active">
               <a class="nav-link" href="?view=beranda">Beranda <span class="sr-only">(current)</span></a>
             </li>
+              <?php } ?>
+
             <?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="?view=sejarah">Tentang</a>
@@ -93,7 +97,7 @@ $objAdmin = new Admin($obj);
                         <span class="menu-collapsed">Artikel</span>
                       </div>
                     </a>
-                    <a href="" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="?view=kontak" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
                         <span class="menu-collapsed">Kontak</span>

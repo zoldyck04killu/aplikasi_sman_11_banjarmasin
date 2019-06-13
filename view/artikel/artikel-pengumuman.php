@@ -4,11 +4,13 @@
   <h2>
     PENGUMUMAN
   </h2>
+  <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
   <a href="?view=data-artikel">
     <button type="button" id="tambah" class="btn btn-primary">
       Daftar Data Pengumuman
     </button>
   </a>
+  <?php } ?>
   <?php
     $data = $objAdmin->show_artikel();
     while ( $a = $data->fetch_object()) { ?>

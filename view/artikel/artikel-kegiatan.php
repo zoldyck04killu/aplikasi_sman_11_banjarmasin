@@ -3,13 +3,15 @@
   <h2>
     KEGIATAN
   </h2>
+  <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
   <a href="?view=data-kegiatan">
     <button type="button" id="tambah" class="btn btn-primary">
       Daftar Data Kegiatan
     </button>
   </a>
+  <?php } ?>
 
-  <?php
+    <?php
     $data = $objAdmin->show_kegiatan();
     while ( $a = $data->fetch_object()) { ?>
 

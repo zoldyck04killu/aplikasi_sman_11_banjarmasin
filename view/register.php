@@ -20,9 +20,9 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Hak Akses</label>
             <select class="form-control" id="exampleFormControlSelect1" name="hak_akses">
+              <option value="admin_web">Admin Web</option>
               <option value="admin">Admin</option>
               <option value="wali">Wali Siswa</option>
-              <option value="siswa">Siswa</option>
             </select>
           </div>
            <div class="form-group">
@@ -53,7 +53,7 @@ if (isset($_POST['register'])) {
 
     if ($login) {
 
-        echo '<script> alert("Register Berhasil"); window.location="?view=login" </script>';
+        echo '<script> alert("Register Berhasil"); window.location="?view=register" </script>';
     }else{
 
         echo '<script> alert("Register Gagal") </script>';
