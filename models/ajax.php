@@ -20,13 +20,11 @@
       $telp_rmh   = $_POST['telp_rmh'];
       $asal_sekolah   = $_POST['asal_sekolah'];
       $thn_lulus   = $_POST['thn_lulus'];
-      $nama_bpk   = $_POST['nama_bpk'];
-      $kerja_bpk   = $_POST['kerja_bpk'];
-      $nama_ibu   = $_POST['nama_ibu'];
-      $kerja_ibu   = $_POST['kerja_ibu'];
+      $kd_jadwal   = $_POST['kd_jadwal'];
+      $kd_kegiatan   = $_POST['kd_kegiatan'];
 
 
-      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu);
+      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan);
 
       echo json_encode($res['status'] = true);
 
@@ -42,12 +40,10 @@
       $telp_rmh   = $_POST['telp_rmh'];
       $asal_sekolah   = $_POST['asal_sekolah'];
       $thn_lulus   = $_POST['thn_lulus'];
-      $nama_bpk   = $_POST['nama_bpk'];
-      $kerja_bpk   = $_POST['kerja_bpk'];
-      $nama_ibu   = $_POST['nama_ibu'];
-      $kerja_ibu   = $_POST['kerja_ibu'];
+      $kd_jadwal   = $_POST['kd_jadwal'];
+      $kd_kegiatan   = $_POST['kd_kegiatan'];
 
-      $objAdmin->update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu);
+      $objAdmin->update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan);
       echo json_encode($res['status'] = true);
 
  }elseif (@$_REQUEST['type'] == 'delete_siswa') {

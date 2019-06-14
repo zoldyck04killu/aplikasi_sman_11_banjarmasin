@@ -66,19 +66,19 @@ class Admin
   	return $query;
   }
 
-  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu)
+  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" INSERT INTO siswa VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl', '$agama', '$alamat', '$telp_rmh', '$asal_sekolah', '$thn_lulus', '$nama_bpk', '$kerja_bpk', '$nama_ibu', '$kerja_ibu') ");
+  	$query = $db->query(" INSERT INTO siswa VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl', '$agama', '$alamat', '$telp_rmh', '$asal_sekolah', '$thn_lulus', '$kd_jadwal', '$kd_kegiatan') ");
   	return true;
   }
 
-  function update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $nama_bpk, $kerja_bpk, $nama_ibu, $kerja_ibu)
+  function update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan)
   {
   	$db    = $this->mysqli->conn;
   	$query = $db->query(" UPDATE siswa SET nama_siswa = '$nama', jk_siswa = '$jk', tempat_lahir = '$lahir', tgl_lahir = '$tgl',
                       agama='$agama', alamat='$alamat', telp_rmh='$telp_rmh', asal_sekolah='$asal_sekolah', thn_lulus='$thn_lulus',
-                      nama_bpk='$nama_bpk', kerja_bpk='$kerja_bpk', nama_ibu='$nama_ibu', kerja_ibu='$kerja_ibu' WHERE nis_siswa = '$nis' ");
+                      kd_jadwal='$kd_jadwal', kd_kegiatan='$kd_kegiatan' WHERE nis_siswa = '$nis' ");
   	return true;
   }
 

@@ -17,17 +17,23 @@ CRUD:
   login [DONE]
 
 
-  hak akses ada 3 admin, wali siswa, siswa.
+[syarif]
+  hak akses ada 3 admin, wali siswa, wab admin. [done]
   register hanya admin web yang boleh. [done]
   data siswa pertama tampilkan per kelas baru muncul siswa yang ada dikelas tersebut sesuai status ditabel siswa. [done]
   artikel orang tua, tampilkan daftar artikel saja seperti tampilan info sejarah. [done]
-  login siswa dan wali siswa [done] disamakan aja dalam 1 form login
+  login siswa dan wali siswa [done] disamakan aja dalam 1 form login [done]
 
   crud :
   jadwal {
   tipe data kelas dirubah
   } [done]
 
-
+[aldi]
   absensi siswa
+  wali
+
+[syarif]
+  revisi :
+  Siswa [done]
   wali

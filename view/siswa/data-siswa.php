@@ -25,10 +25,8 @@
 						<th colspan="" rowspan="" headers="" scope="">Telp Rumah </th>
 						<th colspan="" rowspan="" headers="" scope="">Asal Sekolah </th>
 						<th colspan="" rowspan="" headers="" scope="">Tahun Lulus </th>
-						<th colspan="" rowspan="" headers="" scope="">Nama Bapak </th>
-						<th colspan="" rowspan="" headers="" scope="">Kerja Bapak </th>
-						<th colspan="" rowspan="" headers="" scope="">Nama Ibu </th>
-						<th colspan="" rowspan="" headers="" scope="">Kerja Ibu </th>
+						<th colspan="" rowspan="" headers="" scope="">Kode Jadwal </th>
+						<th colspan="" rowspan="" headers="" scope="">KOde Kegiatan </th>
 						<th colspan="" rowspan="" headers="" scope="">Kelas </th>
 
 						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
@@ -53,10 +51,8 @@
 						<td colspan="" rowspan="" headers=""><?=$a->telp_rmh ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->asal_sekolah ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->thn_lulus ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->nama_bpk ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->kerja_bpk ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->nama_ibu ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->kerja_ibu ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->kd_jadwal ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->kd_kegiatan ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
 
 						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
@@ -72,10 +68,8 @@
 									data-alamat="<?=$a->alamat ?>"
 									data-telp_rmh="<?=$a->telp_rmh ?>"
 									data-asal_sekolah="<?=$a->asal_sekolah ?>"
-									data-thn_lulus="<?=$a->thn_lulus ?>"
-									data-nama_bpk="<?=$a->nama_bpk ?>"
-									data-kerja_bpk="<?=$a->kerja_bpk ?>"
-									data-nama_ibu="<?=$a->nama_ibu ?>"
+									data-kd_jadwal="<?=$a->kd_jadwal ?>"
+									data-kd_kegiatan="<?=$a->kd_kegiatan ?>"\
 									data-kerja_ibu="<?=$a->kerja_ibu ?>"
 								>
 									Edit
@@ -161,24 +155,15 @@
 				</div>
 
 				<div class="form-group col-xs-5 col-lg-6">
-				<label for="code">Nama Bapak</label>
-				<input type="text" id="nama_bpk" class="form-control input-normal" placeholder="Masukan Nama Bapak">
+				<label for="code">Kode Jadwal</label>
+				<input type="text" id="kd_jadwal" class="form-control input-normal" placeholder="Masukan Kode Jadwal">
 				</div>
 
 				<div class="form-group col-xs-5 col-lg-6">
-				<label for="code">Pekerjaan Bapak</label>
-				<input type="text" id="kerja_bpk" class="form-control input-normal" placeholder="Masukan Pekerjaan Bapak">
+				<label for="code">Kode Kegiatan</label>
+				<input type="text" id="kd_kegiatan" class="form-control input-normal" placeholder="Masukan Kode Kagiatan">
 				</div>
-
-				<div class="form-group col-xs-5 col-lg-6">
-				<label for="code">Nama Ibu</label>
-				<input type="text" id="nama_ibu" class="form-control input-normal" placeholder="Masukan Nama Ibu">
-				</div>
-
-				<div class="form-group col-xs-5 col-lg-6">
-				<label for="code">Pekerjaan Ibu</label>
-				<input type="text" id="kerja_ibu" class="form-control input-normal" placeholder="Masukan Pekerjaan Ibu">
-				</div>
+\
 
 
       </div>
@@ -223,10 +208,8 @@ $(document).ready(function(){
 		let telp_rmh   = $('#telp_rmh').val();
 		let asal_sekolah   = $('#asal_sekolah').val();
 		let thn_lulus   = $('#thn_lulus').val();
-		let nama_bpk   = $('#nama_bpk').val();
-		let kerja_bpk   = $('#kerja_bpk').val();
-		let nama_ibu   = $('#nama_ibu').val();
-		let kerja_ibu   = $('#kerja_ibu').val();
+		let kd_jadwal   = $('#kd_jadwal').val();
+		let kd_kegiatan   = $('#kd_kegiatan').val();
 
 
 		if ($('#modal_body').find(':input').val() == '') {
@@ -239,7 +222,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, nama_bpk: nama_bpk, kerja_bpk: kerja_bpk, nama_ibu: nama_ibu, kerja_ibu: kerja_ibu },
+				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -265,11 +248,8 @@ $(document).ready(function(){
 		let telp_rmh   = $(this).data('telp_rmh');
 		let asal_sekolah   =  $(this).data('asal_sekolah');
 		let thn_lulus   =  $(this).data('thn_lulus');
-		let nama_bpk   =  $(this).data('nama_bpk');
-		let kerja_bpk   =  $(this).data('kerja_bpk');
-		let nama_ibu   =  $(this).data('nama_ibu');
-		let kerja_ibu   =  $(this).data('kerja_ibu');
-
+		let kd_jadwal   =  $(this).data('kd_jadwal');
+		let kd_kegiatan   =  $(this).data('kd_kegiatan');
 
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Edit Data');
@@ -285,10 +265,8 @@ $(document).ready(function(){
 		$('#telp_rmh').val(telp_rmh);
 	 	$('#asal_sekolah').val(asal_sekolah);
 	 	$('#thn_lulus').val(thn_lulus);
-		$('#nama_bpk').val(nama_bpk);
-		$('#kerja_bpk').val(kerja_bpk);
-		$('#nama_ibu').val(nama_ibu);
-		$('#kerja_ibu').val(kerja_ibu);
+		$('#kd_jadwal').val(kd_jadwal);
+		$('#kd_kegiatan').val(kd_kegiatan);
 
 		$('#simpan').hide();
 		$('#update').show();
@@ -308,16 +286,14 @@ $(document).ready(function(){
 		let telp_rmh   = $('#telp_rmh').val();
 		let asal_sekolah   = $('#asal_sekolah').val();
 		let thn_lulus   = $('#thn_lulus').val();
-		let nama_bpk   = $('#nama_bpk').val();
-		let kerja_bpk   = $('#kerja_bpk').val();
-		let nama_ibu   = $('#nama_ibu').val();
-		let kerja_ibu   = $('#kerja_ibu').val();
+		let kd_jadwal   = $('#kd_jadwal').val();
+		let kd_kegiatan   = $('#kd_kegiatan').val();
 
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, nama_bpk: nama_bpk, kerja_bpk: kerja_bpk, nama_ibu: nama_ibu, kerja_ibu: kerja_ibu  },
+				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus,  kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan  },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');
