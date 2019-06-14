@@ -99,6 +99,10 @@ elseif (@$_GET['view'] == 'absen-siswa')
   include 'view/absen/absen-siswa.php';
 }
 
+elseif (@$_GET['view'] == 'wali') {
+  include 'view/wali/wali.php';
+}
+
 else
 {
   include 'view/404.php';

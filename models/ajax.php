@@ -436,4 +436,34 @@
   }
 
 
+  elseif (@$_REQUEST['type'] == 'tambah_wali') {
+    $wali = $_POST['wali'];
+    $induk = $_POST['induk'];
+    $nama_leng = $_POST['nama_leng'];
+    $objAdmin->simpan_wali($wali, $induk, $nama_leng);
+    echo json_encode($res['status'] = true);
+  }
+
+  elseif (@$_REQUEST['type'] == 'edit_wali') {
+    
+    $s  = $_POST['kode'];
+    $data = $objAdmin->edit_wali($s)->fetch_object();
+    echo json_encode($data);
+  }
+
+  elseif (@$_REQUEST['type'] == 'update_wali') {
+    $id = $_POST['id'];
+    $wali = $_POST['wali'];
+    $induk = $_POST['induk'];
+    $nama_leng = $_POST['nama_leng'];
+    $objAdmin->update_wali($id, $wali, $induk, $nama_leng);
+    echo json_encode($res['status'] = true);
+  }
+
+  elseif (@$_REQUEST['type'] == 'delete_wali') {
+    $id = $_POST['nis'];
+    $objAdmin->delete_wali($id);
+    echo json_encode($res['status'] = true);
+  }
+
 ?>

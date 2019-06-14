@@ -374,6 +374,42 @@ public function delete_absen($kode)
   return true;
 }
 
+
+public function showWali()
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("SELECT * FROM wali ");
+  return $query;
+}
+
+public function simpan_wali($wali, $induk, $nama_leng)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("INSERT INTO wali VALUES('', '$wali', '$induk', '$nama_leng')");
+  return true;
+}
+
+public function edit_wali($s)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("SELECT * FROM wali WHERE id_wali = '$s' ");
+  return $query;
+}
+
+public function update_wali($id, $wali, $induk, $nama_leng)
+{
+  $db    = $this->mysqli->conn;
+  $db->query("UPDATE wali SET wali_siswa = '$wali', no_induk = '$induk', nama_lengkap = '$nama_leng' WHERE id_wali = '$id' ");
+  return true;
+}
+
+public function delete_wali($id)
+{
+  $db    = $this->mysqli->conn;
+  $db->query("DELETE FROM wali WHERE id_wali = '$id' ");
+  return true;
+}
+
 }// end class
 
 ?>
