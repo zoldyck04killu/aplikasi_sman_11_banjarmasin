@@ -388,5 +388,52 @@
 
   }
 
+  elseif (@$_REQUEST['type'] == 'get_nis_nama') {
+    $nis = @$_POST['nis'];
+    $nama = $objAdmin->get_nis_nama($nis)->fetch_object();
+    echo json_encode($nama);
+  }
+
+  elseif (@$_REQUEST['type'] == 'tambah_absen') {
+    
+    $kode = $_POST['kode'];
+    $nis_opt = $_POST['nis_opt'];
+    $nama_leng = $_POST['nama_leng'];
+    $tgl = $_POST['tgl'];
+    $jam = $_POST['jam'];
+    $hari = $_POST['hari'];
+    $ket = $_POST['ket'];
+
+    $objAdmin->simpan_absen($kode, $nis_opt, $nama_leng, $tgl, $jam, $hari, $ket);
+    echo json_encode($res['status'] = true);
+
+  }
+
+  elseif (@$_REQUEST['type'] == 'edit_absen') {
+    $kode = @$_POST['kode'];
+    $data = $objAdmin->edit_absen($kode)->fetch_object();
+    echo json_encode($data);
+  }
+
+  elseif (@$_REQUEST['type'] == 'update_absen') {
+
+    $kode = $_POST['kode'];
+    $nis_opt = $_POST['nis_opt'];
+    $nama_leng = $_POST['nama_leng'];
+    $tgl = $_POST['tgl'];
+    $jam = $_POST['jam'];
+    $hari = $_POST['hari'];
+    $ket = $_POST['ket'];
+
+    $objAdmin->update_absen($kode, $nis_opt, $nama_leng, $tgl, $jam, $hari, $ket);
+    echo json_encode($res['status'] = true);
+  }
+
+  elseif (@$_REQUEST['type'] == 'delete_absen') {
+    $kode = $_POST['nis'];
+    $objAdmin->delete_absen($kode);
+    echo json_encode($res['status'] = true);
+  }
+
 
 ?>

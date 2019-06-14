@@ -325,6 +325,55 @@ function delete_jadwal($kode)
 }
 
 
+public function showAbsensi()
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" SELECT * FROM absensi_siswa ");
+  return $query;
+}
+
+public function get_nis()
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("SELECT nis_siswa FROM siswa");
+  return $query;
+}
+
+public function get_nis_nama($nis)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("SELECT nama_siswa FROM siswa WHERE nis_siswa = '$nis' ");
+  return $query;
+}
+
+public function simpan_absen($kode, $nis_opt, $nama_leng, $tgl, $jam, $hari, $ket)
+{
+  $db    = $this->mysqli->conn;
+  $db->query("INSERT INTO absensi_siswa VALUES ('$kode', '$nis_opt', '$nama_leng', '$tgl', '$jam', '$hari', '$ket')");
+  return true;
+}
+
+public function edit_absen($kode)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("SELECT * FROM absensi_siswa WHERE kd_absen = '$kode' ");
+  return $query;
+}
+
+public function update_absen($kode, $nis_opt, $nama_leng, $tgl, $jam, $hari, $ket)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("UPDATE absensi_siswa SET nis_siswa = '$nis_opt', nama_leng = '$nama_leng', hari = '$hari', tgl = '$tgl', jam = '$jam', ket = '$ket' WHERE kd_absen = '$kode' ");
+  return true;
+}
+
+public function delete_absen($kode)
+{
+  $db    = $this->mysqli->conn;
+  $query = $db->query("DELETE FROM absensi_siswa WHERE kd_absen = '$kode' ");
+  return true;
+}
+
 }// end class
 
 ?>

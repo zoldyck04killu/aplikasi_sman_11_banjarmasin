@@ -94,6 +94,11 @@ elseif (@$_GET['view'] == 'data-artikel')
   include 'view/artikel/data-artikel.php';
 }
 
+elseif (@$_GET['view'] == 'absen-siswa') 
+{
+  include 'view/absen/absen-siswa.php';
+}
+
 else
 {
   include 'view/404.php';
