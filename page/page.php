@@ -8,7 +8,10 @@ else if (@$_GET['view'] == 'beranda')
 {
 	include 'view/beranda.php';
 }
-
+else if (@$_GET['view'] == 'wali')
+{
+	include 'view/wali/wali.php';
+}
 else if (@$_GET['view'] == 'jadwal')
 {
 	include 'view/jadwal/data-jadwal.php';
@@ -78,6 +81,10 @@ elseif (@$_GET['view'] == 'data-kegiatan')
 {
 	include 'view/kegiatan/data-kegiatan.php';
 }
+elseif (@$_GET['view'] == 'siswa-kegiatan')
+{
+	include 'view/kegiatan/data-siswa-kegiatan.php';
+}
 
 elseif (@$_GET['view'] == 'data-kelas')
 {
@@ -94,7 +101,7 @@ elseif (@$_GET['view'] == 'data-artikel')
   include 'view/artikel/data-artikel.php';
 }
 
-elseif (@$_GET['view'] == 'absen-siswa') 
+elseif (@$_GET['view'] == 'absen-siswa')
 {
   include 'view/absen/absen-siswa.php';
 }

@@ -13,11 +13,11 @@ class Admin
     $this->mysqli = $mysqli;
   }
 
-  function register($username, $password_hash,$hak_akses)
+  function register($username, $password_hash,$hak_akses, $id_wali)
   {
     $db = $this->mysqli->conn;
     // $tanggal = date('Y/m/d');
-    $register = $db->query("INSERT INTO admin (username, password,kewenangan) VALUES ('$username', '$password_hash', '$hak_akses')") or die ($db->error);
+    $register = $db->query("INSERT INTO admin (username, password,kewenangan, id_wali) VALUES ('$username', '$password_hash', '$hak_akses', '$id_wali')") or die ($db->error);
     if ($register) {
         return true;
     } else {
@@ -36,6 +36,7 @@ class Admin
 
           $_SESSION['statusLogin'] = 'login';
           $_SESSION['username'] = $userData->username;
+          $_SESSION['id_wali'] = $userData->id_wali;
           $_SESSION['kewenangan'] = $userData->kewenangan;
           return true;
 
@@ -62,23 +63,26 @@ class Admin
   function show_siswa($kelas)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" SELECT * FROM siswa where status = '$kelas' ");
+  	$query = $db->query(" SELECT * FROM siswa
+      INNER JOIN kegiatan ON siswa.kd_Kegiatan = kegiatan.kd_kegiatan
+      INNER JOIN jadwal ON siswa.kd_jadwal = jadwal.kd_jadwal
+      where status = '$kelas' ");
   	return $query;
   }
 
-  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan)
+  function simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan, $status)
   {
   	$db    = $this->mysqli->conn;
-  	$query = $db->query(" INSERT INTO siswa VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl', '$agama', '$alamat', '$telp_rmh', '$asal_sekolah', '$thn_lulus', '$kd_jadwal', '$kd_kegiatan') ");
+  	$query = $db->query(" INSERT INTO siswa (nis_siswa, nama_siswa, jk_siswa, tempat_lahir, tgl_lahir, agama, alamat, asal_sekolah, thn_lulus, kd_jadwal, kd_kegiatan, status) VALUES ('$nis', '$nama', '$jk', '$lahir', '$tgl', '$agama', '$alamat', '$asal_sekolah', '$thn_lulus', '$kd_jadwal', '$kd_kegiatan', '$status') ");
   	return true;
   }
 
-  function update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan)
+  function update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan, $status)
   {
   	$db    = $this->mysqli->conn;
   	$query = $db->query(" UPDATE siswa SET nama_siswa = '$nama', jk_siswa = '$jk', tempat_lahir = '$lahir', tgl_lahir = '$tgl',
-                      agama='$agama', alamat='$alamat', telp_rmh='$telp_rmh', asal_sekolah='$asal_sekolah', thn_lulus='$thn_lulus',
-                      kd_jadwal='$kd_jadwal', kd_kegiatan='$kd_kegiatan' WHERE nis_siswa = '$nis' ");
+                      agama='$agama', alamat='$alamat', asal_sekolah='$asal_sekolah', thn_lulus='$thn_lulus',
+                      kd_jadwal='$kd_jadwal', kd_kegiatan='$kd_kegiatan', status='$status' WHERE nis_siswa = '$nis' ");
   	return true;
   }
 
@@ -97,19 +101,28 @@ function show_nilai()
   return $query;
 }
 
-function simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai)
+function show_nilai_anak($id_wali)
 {
   $db    = $this->mysqli->conn;
-  $query = $db->query(" INSERT INTO nilai (nis_siswa, nama_leng, matpel, semester, kelas, tugas, uts, uas, rata, nilai)
-    VALUES ('$nis', '$nama', '$matpel', '$semester', '$kelas', '$tugas', '$uts', '$uas', '$rata', '$nilai') ");
+  $query = $db->query(" SELECT * FROM nilai INNER JOIN wali on nilai.nis_siswa = wali.nis ");
+  return $query;
+}
+
+
+function simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $nilai)
+{
+
+  $db    = $this->mysqli->conn;
+  $query = $db->query(" INSERT INTO nilai (nis_siswa, nama_leng, matpel, semester, kelas, tugas, uts, uas, nilai)
+    VALUES ('$nis', '$nama', '$matpel', '$semester', '$kelas', '$tugas', '$uts', '$uas', '$nilai') ");
   return true;
 }
 
-function update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai)
+function update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $nilai)
 {
   $db    = $this->mysqli->conn;
   $query = $db->query(" UPDATE nilai SET nis_siswa='$nis', nama_leng='$nama', matpel='$matpel', semester='$semester',
-          kelas='$kelas', tugas='$tugas', uts='$uts', uas='$uas', rata='$rata', nilai='$nilai' WHERE kd_nilai = '$kd_nilai' ");
+          kelas='$kelas', tugas='$tugas', uts='$uts', uas='$uas', nilai='$nilai' WHERE kd_nilai = '$kd_nilai' ");
   return true;
 }
 
@@ -157,7 +170,15 @@ function delete_nilai($kd_nilai)
   function show_kegiatan()
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" SELECT * FROM kegiatan");
+    $query = $db->query(" SELECT * FROM kegiatan INNER JOIN guru WHERE kegiatan.nip = guru.nip");
+    return $query;
+  }
+
+  function show_siswakegiatan($kd_keg)
+  {
+    $db    = $this->mysqli->conn;
+    $query = $db->query(" SELECT * FROM kegiatan INNER JOIN siswa ON kegiatan.kd_kegiatan = siswa.kd_Kegiatan
+      WHERE kegiatan.kd_kegiatan = '$kd_keg'");
     return $query;
   }
 
@@ -177,10 +198,12 @@ function delete_nilai($kd_nilai)
     return true;
   }
 
-  function update_kegiatan($kode, $nama, $hari, $jam, $nip)
+  function update_kegiatan($kode, $kode_lama, $nama, $hari, $jam, $nip)
   {
     $db    = $this->mysqli->conn;
-    $query = $db->query(" UPDATE kegiatan SET nama_kegiatan = '$nama', hari_kegiatan = '$hari', jam_kegiatan = '$jam',  nip = '$nip' WHERE kd_kegiatan = '$kode' ");
+    // var_dump($kode_lama);
+    // die();
+    $query = $db->query(" UPDATE kegiatan SET kd_kegiatan = '$kode', nama_kegiatan = '$nama', hari_kegiatan = '$hari', jam_kegiatan = '$jam',  nip = '$nip' WHERE kd_kegiatan = '$kode_lama' ");
     return true;
   }
 
@@ -382,10 +405,10 @@ public function showWali()
   return $query;
 }
 
-public function simpan_wali($wali, $induk, $nama_leng)
+public function simpan_wali($nama, $alamat, $telp, $pekerjaan, $agama, $status, $nis)
 {
   $db    = $this->mysqli->conn;
-  $query = $db->query("INSERT INTO wali VALUES('', '$wali', '$induk', '$nama_leng')");
+  $query = $db->query("INSERT INTO wali (nama, alamat, telp, pekerjaan, agama, status, nis) VALUES('$nama', '$alamat', '$telp', '$pekerjaan', '$agama', '$status', '$nis')");
   return true;
 }
 
@@ -396,10 +419,10 @@ public function edit_wali($s)
   return $query;
 }
 
-public function update_wali($id, $wali, $induk, $nama_leng)
+public function update_wali($id_wali, $nama, $alamat, $telp, $pekerjaan, $agama, $status, $nis)
 {
   $db    = $this->mysqli->conn;
-  $db->query("UPDATE wali SET wali_siswa = '$wali', no_induk = '$induk', nama_lengkap = '$nama_leng' WHERE id_wali = '$id' ");
+  $db->query("UPDATE wali SET id_wali='$id_wali', nama='$nama', alamat='$alamat', telp='$telp', pekerjaan='$pekerjaan', agama='$agama', status='$status', nis='$nis' WHERE id_wali = '$id_wali' ");
   return true;
 }
 

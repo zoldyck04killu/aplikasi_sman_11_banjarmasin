@@ -22,7 +22,6 @@
 						<th colspan="" rowspan="" headers="" scope="">Tgl Lahir</th>
 						<th colspan="" rowspan="" headers="" scope="">Agama </th>
 						<th colspan="" rowspan="" headers="" scope="">Alamat </th>
-						<th colspan="" rowspan="" headers="" scope="">Telp Rumah </th>
 						<th colspan="" rowspan="" headers="" scope="">Asal Sekolah </th>
 						<th colspan="" rowspan="" headers="" scope="">Tahun Lulus </th>
 						<th colspan="" rowspan="" headers="" scope="">Kode Jadwal </th>
@@ -48,11 +47,10 @@
 					 	<td colspan="" rowspan="" headers=""><?=$a->tgl_lahir ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->agama ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->alamat ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->telp_rmh ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->asal_sekolah ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->thn_lulus ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->kd_jadwal ?></td>
-						<td colspan="" rowspan="" headers=""><?=$a->kd_kegiatan ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->kd_Kegiatan ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
 
 						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
@@ -61,16 +59,19 @@
 						 		<button class="btn btn-info" id="edit"
 									data-nis="<?=$a->nis_siswa ?>"
 									data-nama="<?=$a->nama_siswa ?>"
+									data-nama_keg="<?=$a->nama_kegiatan ?>"
+									data-nama_jad="<?=$a->matpel ?>"
+
 									data-jk="<?=$a->jk_siswa ?>"
 									data-lahir="<?=$a->tempat_lahir ?>"
 									data-tgl="<?=$a->tgl_lahir ?>"
 									data-agama="<?=$a->agama ?>"
 									data-alamat="<?=$a->alamat ?>"
-									data-telp_rmh="<?=$a->telp_rmh ?>"
 									data-asal_sekolah="<?=$a->asal_sekolah ?>"
+									data-thn_lulus="<?=$a->thn_lulus ?>"
 									data-kd_jadwal="<?=$a->kd_jadwal ?>"
-									data-kd_kegiatan="<?=$a->kd_kegiatan ?>"\
-									data-kerja_ibu="<?=$a->kerja_ibu ?>"
+									data-kd_kegiatan="<?=$a->kd_Kegiatan ?>"
+									data-status="<?=$a->status ?>"
 								>
 									Edit
 								</button>
@@ -140,11 +141,6 @@
 				</div>
 
 				<div class="form-group col-xs-5 col-lg-6">
-				<label for="code">Telp Rumah</label>
-				<input type="text" id="telp_rmh" class="form-control input-normal" placeholder="Masukan Telp Rumah">
-				</div>
-
-				<div class="form-group col-xs-5 col-lg-6">
 				<label for="code">Asal Sekolah</label>
 				<input type="text" id="asal_sekolah" class="form-control input-normal" placeholder="Masukan Asal Sekolah" >
 				</div>
@@ -156,17 +152,33 @@
 
 				<div class="form-group col-xs-5 col-lg-6">
 				<label for="code">Kode Jadwal</label>
-				<input type="text" id="kd_jadwal" class="form-control input-normal" placeholder="Masukan Kode Jadwal">
+				<!-- <input type="text" id="kd_jadwal" class="form-control input-normal" placeholder="Masukan Kode Jadwal"> -->
+				<select class="form-control" id="kd_jadwal">
+				<?php
+					$data = $objAdmin->show_jadwal();
+					while ( $jadwal = $data->fetch_object()) { ?>
+							<option value="<?= $jadwal->kd_jadwal ?>"><?= $jadwal->matpel ?></option>
+						<?php } ?>
+					</select>
 				</div>
 
 				<div class="form-group col-xs-5 col-lg-6">
 				<label for="code">Kode Kegiatan</label>
-				<input type="text" id="kd_kegiatan" class="form-control input-normal" placeholder="Masukan Kode Kagiatan">
+				<!-- <input type="text" id="kd_kegiatan" class="form-control input-normal" placeholder="Masukan Kode Kegiatan"> -->
+				<select class="form-control" id="kd_kegiatan">
+				<?php
+					$data = $objAdmin->show_kegiatan();
+					while ( $kegiatan = $data->fetch_object()) { ?>
+							<option value="<?= $kegiatan->kd_kegiatan ?>"><?= $kegiatan->nama_kegiatan ?></option>
+						<?php } ?>
+					</select>
 				</div>
-\
 
+				<div class="form-group col-xs-5 col-lg-6">
+				<label for="code">Kelas</label>
+				<input type="text" id="status" class="form-control input-normal" placeholder="Masukan Kelas">
+				</div>
 
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" id="tutup">Tutup</button>
         <button type="button" class="btn btn-primary" id="simpan">Simpan</button>
@@ -205,11 +217,11 @@ $(document).ready(function(){
 		let tgl   = $('#tgl').val();
 		let agama   = $('#agama').val();
 		let alamat   = $('#alamat').val();
-		let telp_rmh   = $('#telp_rmh').val();
 		let asal_sekolah   = $('#asal_sekolah').val();
 		let thn_lulus   = $('#thn_lulus').val();
 		let kd_jadwal   = $('#kd_jadwal').val();
 		let kd_kegiatan   = $('#kd_kegiatan').val();
+		let status = $('#status').val();
 
 
 		if ($('#modal_body').find(':input').val() == '') {
@@ -222,7 +234,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan },
+				data: { type: 'tambah_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus, kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan, status: status },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -240,16 +252,20 @@ $(document).ready(function(){
 	$('#myTable #edit').click(function(){
 		let nis   = $(this).data('nis');
 		let nama  = $(this).data('nama');
+		let nama_keg  = $(this).data('nama_keg');
+		let nama_jad  = $(this).data('nama_jad');
+
 		let jk    = $(this).data('jk');
 		let lahir = $(this).data('lahir');
 		let tgl   = $(this).data('tgl');
 		let agama   =  $(this).data('agama');
 		let alamat   =  $(this).data('alamat');
-		let telp_rmh   = $(this).data('telp_rmh');
 		let asal_sekolah   =  $(this).data('asal_sekolah');
 		let thn_lulus   =  $(this).data('thn_lulus');
 		let kd_jadwal   =  $(this).data('kd_jadwal');
 		let kd_kegiatan   =  $(this).data('kd_kegiatan');
+		let status   =  $(this).data('status');
+		// console.log(kd_kegiatan);
 
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Edit Data');
@@ -262,11 +278,16 @@ $(document).ready(function(){
 		$('#tgl').val(tgl);
 		$('#agama').val(agama);
 		$('#alamat').val(alamat);
-		$('#telp_rmh').val(telp_rmh);
 	 	$('#asal_sekolah').val(asal_sekolah);
 	 	$('#thn_lulus').val(thn_lulus);
-		$('#kd_jadwal').val(kd_jadwal);
-		$('#kd_kegiatan').val(kd_kegiatan);
+		// $('#kd_jadwal').val(kd_jadwal);
+		$('#kd_jadwal').prepend('<option value="'+kd_jadwal+' " selected>' + nama_jad + '</option>');
+
+		// $('#kd_kegiatan').val(kd_kegiatan);
+		// $('#kd_kegiatan').val(kd_kegiatan);
+		$('#kd_kegiatan').prepend('<option value="'+kd_kegiatan+' " selected>' + nama_keg + '</option>');
+		$('#status').val(status);
+
 
 		$('#simpan').hide();
 		$('#update').show();
@@ -283,17 +304,18 @@ $(document).ready(function(){
 		let tgl   = $('#tgl').val();
 		let agama   = $('#agama').val();
 		let alamat   = $('#alamat').val();
-		let telp_rmh   = $('#telp_rmh').val();
 		let asal_sekolah   = $('#asal_sekolah').val();
 		let thn_lulus   = $('#thn_lulus').val();
 		let kd_jadwal   = $('#kd_jadwal').val();
 		let kd_kegiatan   = $('#kd_kegiatan').val();
+		let status   = $('#status').val();
+
 
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, telp_rmh: telp_rmh, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus,  kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan  },
+				data: { type: 'update_siswa', nis: nis, nama: nama, jk: jk, lahir: lahir, tgl: tgl, agama: agama, alamat: alamat, asal_sekolah: asal_sekolah, thn_lulus: thn_lulus,  kd_jadwal: kd_jadwal, kd_kegiatan: kd_kegiatan, status: status  },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');

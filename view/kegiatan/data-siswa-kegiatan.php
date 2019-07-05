@@ -4,44 +4,43 @@
 
 	<div class="col-md-12" id="" style="">
 
-			<h4 class="text-center">Data Kegiatan</h4> <hr>
-			<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
+			<h4 class="text-center">Data Siswa Kegiatan</h4> <hr>
+			<!-- <?php// if (@$_SESSION['kewenangan'] == 'admin') { ?>
 			<button type="button" id="tambah" class="btn btn-primary">
 			  Tambah
 			</button>
-			<?php } ?>
+			<?php// } ?> -->
 			<table class="table table-md table-hover table-striped mt-4" id="myTable">
 				<thead class="thead-dark">
 					<tr>
-						<th colspan="" rowspan="" headers="" scope="">KODE</th>
-						<th colspan="" rowspan="" headers="" scope="">Nama</th>
-						<th colspan="" rowspan="" headers="" scope="">Hari</th>
-						<th colspan="" rowspan="" headers="" scope="">Jam</th>
-						<th colspan="" rowspan="" headers="" scope="">NIP</th>
-						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
-						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
-						<?php } ?>
+						<th colspan="" rowspan="" headers="" scope="">Nis</th>
+						<th colspan="" rowspan="" headers="" scope="">Nama Siswa</th>
+						<th colspan="" rowspan="" headers="" scope="">Kelas</th>
+						<th colspan="" rowspan="" headers="" scope="">Kegiatan</th>
+						<?php// if (@$_SESSION['kewenangan'] == 'admin') { ?>
+						<!-- <th colspan="" rowspan="" headers="" scope="">Pilihan</th> -->
+						<?php //} ?>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-						$data = $objAdmin->show_kegiatan();
+					$kd_keg = $_GET['kd_keg'];
+						$data = $objAdmin->show_siswakegiatan($kd_keg);
 						while ( $a = $data->fetch_object()) { ?>
 
 					 <tr>
-					 	<td colspan="" rowspan="" headers=""><?=$a->kd_kegiatan ?></td>
-					 	<td colspan="" rowspan="" headers=""> <a href="?view=siswa-kegiatan&kd_keg=<?=$a->kd_kegiatan ?>"> <?=$a->nama_kegiatan ?> </a> </td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->hari_kegiatan ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->jam_kegiatan ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->nama_guru ?></td>
-						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
-					 	<td colspan="" rowspan="" headers="">
+					 	<td colspan="" rowspan="" headers=""><?=$a->nis_siswa ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->nama_siswa ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->nama_kegiatan ?></td>
+						<?php// if (@$_SESSION['kewenangan'] == 'admin') { ?>
+					 	<!-- <td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
 						 		<button class="btn btn-info" id="edit" data-kode="<?=$a->kd_kegiatan ?>" data-nama="<?=$a->nama_kegiatan ?>" data-hari="<?=$a->hari_kegiatan ?>" data-jam="<?=$a->jam_kegiatan ?>" data-tempat="<?=$a->tempat_kegiatan ?>" data-nip="<?=$a->nip ?>">Edit</button>
 						 		<button class="btn btn-danger" id="hapus" data-kode="<?=$a->kd_kegiatan ?>" >Hapus</button>
 					 		</div>
-					 	</td>
-						<?php } ?>
+					 	</td> -->
+						<?php //} ?>
 					 </tr>
 
 					<?php } ?>
@@ -66,9 +65,7 @@
 
        <div class="form-group col-xs-5 col-lg-4">
 			<label for="code">KODE KEGIATAN</label>
-		    <input type="text" id="kode" class="form-control" placeholder="KODE" >
-				<input type="hidden" id="kode_lama" class="form-control" placeholder="KODE" >
-
+		    <input type="number" id="kode" class="form-control" placeholder="KODE" >
 		</div>
 
 		<div class="form-group col-xs-5 col-lg-6">
@@ -137,7 +134,7 @@ $(document).ready(function(){
 	$('#tambah').click(function(){
 		$('#myModal').modal('show');
 		$('#modalTitle').text('Tambah Data');
-		// $('#kode').attr('readonly', false);
+		$('#kode').attr('readonly', false);
 
 	}); // tambah
 
@@ -184,8 +181,6 @@ $(document).ready(function(){
 	$('#myTable #edit').click(function(){
 
 		let kode   	= $(this).data('kode');
-		let kode_lama   	= $(this).data('kode');
-
 		let nama  	= $(this).data('nama');
 		let hari    = $(this).data('hari');
 		let jam 	= $(this).data('jam');
@@ -196,9 +191,7 @@ $(document).ready(function(){
 		$('#modalTitle').text('Edit Data');
 
 		$('#kode').val(kode);
-		$('#kode_lama').val(kode_lama);
-
-		// $('#kode').attr('readonly', true);
+		$('#kode').attr('readonly', true);
 		$('#nama').val(nama);
 		$('#hari').val(hari);
 		$('#jam').val(jam);
@@ -207,7 +200,6 @@ $(document).ready(function(){
 
 		$('#simpan').hide();
 		$('#update').show();
-		// console.log(kode_lama);
 
 	}); // edit
 
@@ -215,8 +207,6 @@ $(document).ready(function(){
 	$('#update').click(function(){
 
 		let kode   	= $('#kode').val();
-		let kode_lama   	= $('#kode_lama').val();
-
 		let nama  	= $('#nama').val();
 		let hari    = $('#hari').val();
 		let jam 	= $('#jam').val();
@@ -227,7 +217,7 @@ $(document).ready(function(){
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_kegiatan', kode: kode, kode_lama:kode_lama, nama: nama, hari: hari, jam: jam, nip: nip },
+				data: { type: 'update_kegiatan', kode: kode, nama: nama, hari: hari, jam: jam, nip: nip },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');

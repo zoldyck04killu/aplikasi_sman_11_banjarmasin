@@ -1,46 +1,46 @@
 
-<?php 
+<?php
 
 function hari_ini(){
 
 	$hari = date ("D");
- 
+
 	switch($hari){
 		case 'Sun':
 			$hari_ini = "Minggu";
 		break;
- 
-		case 'Mon':			
+
+		case 'Mon':
 			$hari_ini = "Senin";
 		break;
- 
+
 		case 'Tue':
 			$hari_ini = "Selasa";
 		break;
- 
+
 		case 'Wed':
 			$hari_ini = "Rabu";
 		break;
- 
+
 		case 'Thu':
 			$hari_ini = "Kamis";
 		break;
- 
+
 		case 'Fri':
 			$hari_ini = "Jumat";
 		break;
- 
+
 		case 'Sat':
 			$hari_ini = "Sabtu";
 		break;
-		
+
 		default:
-					
+
 		break;
 	}
- 
+
 	return $hari_ini;
- 
+
 }
 
  ?>
@@ -64,9 +64,13 @@ function hari_ini(){
 				<thead class="thead-dark">
 					<tr>
 						<th colspan="" rowspan="" headers="" scope="">ID Wali</th>
-						<th colspan="" rowspan="" headers="" scope="">Wali Siswa</th>
-						<th colspan="" rowspan="" headers="" scope="">No Induk</th>
-						<th colspan="" rowspan="" headers="" scope="">Nama Lengkap</th>
+						<th colspan="" rowspan="" headers="" scope="">Nama Wali Siswa</th>
+						<th colspan="" rowspan="" headers="" scope="">Alamat</th>
+						<th colspan="" rowspan="" headers="" scope="">Telp</th>
+						<th colspan="" rowspan="" headers="" scope="">Pekerjaan</th>
+						<th colspan="" rowspan="" headers="" scope="">Agama</th>
+						<th colspan="" rowspan="" headers="" scope="">Status</th>
+						<th colspan="" rowspan="" headers="" scope="">No Induk Siswa</th>
 						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 						<th colspan="" rowspan="" headers="" scope="">Pilihan</th>
 						<?php }  ?>
@@ -79,9 +83,13 @@ function hari_ini(){
 
 					 <tr>
 					 	<td colspan="" rowspan="" headers=""><?=$a->id_wali ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->wali_siswa ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->no_induk ?></td>
-					 	<td colspan="" rowspan="" headers=""><?=$a->nama_lengkap ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->nama ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->alamat ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->telp ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->pekerjaan ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->agama ?></td>
+						<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
+					 	<td colspan="" rowspan="" headers=""><?=$a->nis ?></td>
 						<?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
 					 	<td colspan="" rowspan="" headers="">
 					 		<div class="btn btn-group" id="" style="">
@@ -112,21 +120,45 @@ function hari_ini(){
       </div>
       <div class="modal-body" id="modal_body">
 
+				<!-- <div class="form-group col-xs-5 col-lg-4">
+ 				<label for="code">Nama Wali</label> -->
+ 				<input type="hidden" id="id_wali" class="form-control input-normal">
+ 		    <!-- </div> -->
+
 		   <div class="form-group col-xs-5 col-lg-4">
-				<label for="code">wali siswa</label>
-				<input type="text" id="wali" class="form-control input-normal">
-				<input type="hidden" id="id" name="">
+				<label for="code">Nama Wali</label>
+				<input type="text" id="nama" class="form-control input-normal">
 		    </div>
 
  			<div class="form-group col-xs-5 col-lg-4">
-				<label for="code">No Induk</label>
-				<input type="text" id="induk" class="form-control input-normal">
+				<label for="code">Alamat</label>
+				<input type="text" id="alamat" class="form-control input-normal">
 		    </div>
 
 			<div class="form-group col-xs-5 col-lg-4">
-				<label for="code">Nama Lengkap</label>
-				<input type="text" id="nama_leng" class="form-control input-normal">
+				<label for="code">Telp</label>
+				<input type="text" id="telp" class="form-control input-normal">
 		    </div>
+
+				<div class="form-group col-xs-5 col-lg-4">
+					<label for="code">Pekerjaan</label>
+					<input type="text" id="pekerjaan" class="form-control input-normal">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-4">
+					<label for="code">Agama</label>
+					<input type="text" id="agama" class="form-control input-normal">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-4">
+					<label for="code">Status</label>
+					<input type="text" id="status" class="form-control input-normal">
+				</div>
+
+				<div class="form-group col-xs-5 col-lg-4">
+					<label for="code">Nis Siswa/Anak</label>
+					<input type="text" id="nis" class="form-control input-normal">
+				</div>
 
       </div>
       <div class="modal-footer">
@@ -151,11 +183,15 @@ function hari_ini(){
 					success: function(response){
 						$('#myModal').modal('show');
 						$('#modalTitle').text('Edit Data');
-						$('#id').val(response.id_wali);
-						$('#wali').val(response.wali_siswa);
-						$('#induk').val(response.no_induk);
-						$('#nama_leng').val(response.nama_lengkap);
-			
+						$('#id_wali').val(response.id_wali);
+						$('#nama').val(response.nama);
+						$('#alamat').val(response.alamat);
+						$('#telp').val(response.telp);
+						$('#pekerjaan').val(response.pekerjaan);
+						$('#agama').val(response.agama);
+						$('#status').val(response.status);
+						$('#nis').val(response.nis);
+
 						$('#simpan').hide();
 						$('#update').show();
 
@@ -183,17 +219,19 @@ $(document).ready(function(){
 
 	$('#simpan').click(function(){
 
-		let wali = $('#wali').val();
-		let induk = $('#induk').val();
-		let nama_leng = $('#nama_leng').val();
-		
-		
+		let nama = $('#nama').val();
+		let alamat = $('#alamat').val();
+		let telp = $('#telp').val();
+		let pekerjaan = $('#pekerjaan').val();
+		let  agama = $('#agama').val();
+		let status = $('#status').val();
+		let nis = $('#nis').val();
 
 				$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'tambah_wali', wali: wali, induk: induk, nama_leng: nama_leng },
+				data: { type: 'tambah_wali', nama: nama, alamat: alamat, telp: telp, pekerjaan: pekerjaan, agama: agama, status: status, nis: nis },
 					success: function(response){
 						alert('Berhasil menyimpan data');
 						$('#modal_body').find(':input').val('');
@@ -202,23 +240,26 @@ $(document).ready(function(){
 					}
 			});
 
-			
+
 
 
 	}); // simpan
 
 	$('#update').click(function(){
-
-		let id = $('#id').val();
-		let wali = $('#wali').val();
-		let induk = $('#induk').val();
-		let nama_leng = $('#nama_leng').val();
+		let id_wali = $('#id_wali').val();
+		let nama = $('#nama').val();
+		let alamat = $('#alamat').val();
+		let telp = $('#telp').val();
+		let pekerjaan = $('#pekerjaan').val();
+		let  agama = $('#agama').val();
+		let status = $('#status').val();
+		let nis = $('#nis').val();
 
 		$.ajax({
 				url: 'http://localhost/aplikasi_sman_11_banjarmasin/models/ajax.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: { type: 'update_wali', id: id, wali: wali, induk: induk, nama_leng: nama_leng },
+				data: { type: 'update_wali', id_wali: id_wali, nama: nama, alamat: alamat, telp: telp, pekerjaan: pekerjaan, agama: agama, status: status, nis: nis },
 					success: function(response){
 						alert('Berhasil update data');
 						$('#myModal').modal('hide');

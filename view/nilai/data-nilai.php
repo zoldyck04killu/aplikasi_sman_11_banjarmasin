@@ -31,9 +31,13 @@
 				</thead>
 				<tbody>
 					<?php
+					if ($_SESSION['kewenangan'] == 'wali') {
+						$id_wali = $_SESSION['id_wali'];
+						$data = $objAdmin->show_nilai_anak($id_wali);
+					}else{
 						$data = $objAdmin->show_nilai();
+					}
 						while ( $a = $data->fetch_object()) { ?>
-
 					 <tr>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nis_siswa ?></td>
 					 	<td colspan="" rowspan="" headers=""><?=$a->nama_leng ?></td>

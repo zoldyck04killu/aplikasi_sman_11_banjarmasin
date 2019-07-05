@@ -55,7 +55,7 @@ $objAdmin = new Admin($obj);
             <li class="nav-item">
               <a class="nav-link" href="?view=kontak">Kontak</a>
             </li>
-            <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
+            <?php if (@$_SESSION['kewenangan'] == 'admin_web') { ?>
             <li class="nav-item">
               <a class="nav-link" href="?view=register">register</a>
             </li>

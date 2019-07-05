@@ -82,7 +82,7 @@
 
        <div class="form-group col-xs-5 col-lg-4">
 			<label for="code">KODE</label>
-		    <input type="number" id="kode" class="form-control" placeholder="Kode Jadwal" >
+		    <input type="text" id="kode" class="form-control" placeholder="Kode Jadwal" >
 		</div>
 
 		<div class="form-group col-xs-5 col-lg-6">
@@ -112,7 +112,14 @@
 
 			<div class="form-group col-xs-5 col-lg-4">
 		 <label for="code">GURU</label>
-		 <input type="text" id="nama_guru" class="form-control input-normal" placeholder="Guru" >
+		 <!-- <input type="text" id="nama_guru" class="form-control input-normal" placeholder="Guru" > -->
+		 <select class="form-control" id="nama_guru">
+		 <?php
+			 $data = $objAdmin->show_guru();
+			 while ( $guru = $data->fetch_object()) { ?>
+					 <option value="<?= $guru->nama_guru ?>"><?= $guru->nama_guru ?></option>
+				 <?php } ?>
+			 </select>
 		 </div>
 
       </div>
@@ -199,7 +206,9 @@ $(document).ready(function(){
 		$('#waktu').val(waktu);
 		$('#kelas').val(kelas);
 		$('#matpel').val(matpel);
-		$('#nama_guru').val(nama_guru);
+		// $('#nama_guru').val(nama_guru);
+		$('#nama_guru').prepend('<option value="'+nama_guru+' " selected>' + nama_guru + '</option>');
+
 
 		$('#simpan').hide();
 		$('#update').show();

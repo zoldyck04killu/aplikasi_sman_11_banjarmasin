@@ -17,14 +17,14 @@
       $tgl = $_POST['tgl'];
       $agama   = $_POST['agama'];
       $alamat   = $_POST['alamat'];
-      $telp_rmh   = $_POST['telp_rmh'];
       $asal_sekolah   = $_POST['asal_sekolah'];
       $thn_lulus   = $_POST['thn_lulus'];
       $kd_jadwal   = $_POST['kd_jadwal'];
       $kd_kegiatan   = $_POST['kd_kegiatan'];
+      $status   = $_POST['status'];
 
 
-      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan);
+      $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan, $status);
 
       echo json_encode($res['status'] = true);
 
@@ -37,13 +37,14 @@
       $tgl   = $_POST['tgl'];
       $agama   = $_POST['agama'];
       $alamat   = $_POST['alamat'];
-      $telp_rmh   = $_POST['telp_rmh'];
       $asal_sekolah   = $_POST['asal_sekolah'];
       $thn_lulus   = $_POST['thn_lulus'];
       $kd_jadwal   = $_POST['kd_jadwal'];
       $kd_kegiatan   = $_POST['kd_kegiatan'];
+      $status   = $_POST['status'];
 
-      $objAdmin->update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $telp_rmh, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan);
+
+      $objAdmin->update_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan, $status);
       echo json_encode($res['status'] = true);
 
  }elseif (@$_REQUEST['type'] == 'delete_siswa') {
@@ -137,6 +138,8 @@
  elseif (@$_REQUEST['type'] == 'update_kegiatan') {
 
    $kode    = @$_POST['kode'];
+   $kode_lama    = @$_POST['kode_lama'];
+
    $nama    = @$_POST['nama'];
    $hari    = @$_POST['hari'];
    $jam     = @$_POST['jam'];
@@ -145,7 +148,7 @@
    // var_dump($jam);
    // die();
 
-    $objAdmin->update_kegiatan($kode, $nama, $hari, $jam, $nip);
+    $objAdmin->update_kegiatan($kode, $kode_lama, $nama, $hari, $jam, $nip);
     echo json_encode($res['status'] = true);
 
  }
@@ -311,10 +314,9 @@
       $tugas   = $_POST['tugas'];
       $uts   = $_POST['uts'];
       $uas   = $_POST['uas'];
-      $rata   = $_POST['rata'];
       $nilai   = $_POST['nilai'];
 
-      $objAdmin->simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai);
+      $objAdmin->simpan_nilai($nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $nilai);
 
       echo json_encode($res['status'] = true);
 
@@ -329,10 +331,9 @@
    $tugas   = $_POST['tugas'];
    $uts   = $_POST['uts'];
    $uas   = $_POST['uas'];
-   $rata   = $_POST['rata'];
    $nilai   = $_POST['nilai'];
 
-      $objAdmin->update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $rata, $nilai);
+      $objAdmin->update_nilai($kd_nilai, $nis, $nama, $matpel, $semester, $kelas, $tugas, $uts, $uas, $nilai);
       echo json_encode($res['status'] = true);
 
  }elseif (@$_REQUEST['type'] == 'delete_nilai') {
@@ -391,7 +392,7 @@
   }
 
   elseif (@$_REQUEST['type'] == 'tambah_absen') {
-    
+
     $kode = $_POST['kode'];
     $nis_opt = $_POST['nis_opt'];
     $nama_leng = $_POST['nama_leng'];
@@ -433,26 +434,35 @@
 
 
   elseif (@$_REQUEST['type'] == 'tambah_wali') {
-    $wali = $_POST['wali'];
-    $induk = $_POST['induk'];
-    $nama_leng = $_POST['nama_leng'];
-    $objAdmin->simpan_wali($wali, $induk, $nama_leng);
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $telp = $_POST['telp'];
+    $pekerjaan = $_POST['pekerjaan'];
+    $agama = $_POST['agama'];
+    $status = $_POST['status'];
+    $nis = $_POST['nis'];
+
+    $objAdmin->simpan_wali($nama, $alamat, $telp, $pekerjaan, $agama, $status, $nis);
     echo json_encode($res['status'] = true);
   }
 
   elseif (@$_REQUEST['type'] == 'edit_wali') {
-    
+
     $s  = $_POST['kode'];
     $data = $objAdmin->edit_wali($s)->fetch_object();
     echo json_encode($data);
   }
 
   elseif (@$_REQUEST['type'] == 'update_wali') {
-    $id = $_POST['id'];
-    $wali = $_POST['wali'];
-    $induk = $_POST['induk'];
-    $nama_leng = $_POST['nama_leng'];
-    $objAdmin->update_wali($id, $wali, $induk, $nama_leng);
+    $id_wali = $_POST['id_wali'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $telp = $_POST['telp'];
+    $pekerjaan = $_POST['pekerjaan'];
+    $agama = $_POST['agama'];
+    $status = $_POST['status'];
+    $nis = $_POST['nis'];
+    $objAdmin->update_wali($id_wali, $nama, $alamat, $telp, $pekerjaan, $agama, $status, $nis);
     echo json_encode($res['status'] = true);
   }
 

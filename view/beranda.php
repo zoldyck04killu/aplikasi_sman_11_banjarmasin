@@ -30,8 +30,14 @@
     </a>
     <?php if (@$_SESSION['kewenangan'] == 'admin') { ?>
     <a href="?view=mata-pelajaran">
-      <div class="menu-utama menu5">
+      <div class="menu-utama menu6">
         PELAJARAN
+      </div>
+    </a>
+
+    <a href="?view=wali">
+      <div class="menu-utama menu7">
+        WALI SISWA
       </div>
     </a>
     <?php } ?>
@@ -71,6 +77,14 @@
 
   .menu5{
     background-color: #c4cc27;
+  }
+
+  .menu6{
+    background-color: #27cc55;
+  }
+
+  .menu7{
+    background-color: #a42698;
   }
 
   /* .menu-utama .menu1{

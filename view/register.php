@@ -25,6 +25,12 @@
               <option value="wali">Wali Siswa</option>
             </select>
           </div>
+
+          <div class="form-group">
+           <label>Id Wali</label>
+           <input type="text" name="id_wali" class="form-control" placeholder="Options jika Hak Akses adalah wali">
+         </div>
+
            <div class="form-group">
               <input type="submit" name="register" value="Register" class="btn btn-md btn-primary">
           </div>
@@ -47,9 +53,11 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $hak_akses = $_POST['hak_akses'];
+    $id_wali = $_POST['id_wali'];
 
 
-    $login = $objAdmin->register($username, $password_hash,$hak_akses);
+
+    $login = $objAdmin->register($username, $password_hash,$hak_akses, $id_wali);
 
     if ($login) {
 
