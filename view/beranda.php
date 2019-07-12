@@ -86,7 +86,11 @@
   }
 
   .menu6{
+<<<<<<< HEAD
     background-color: #ff7f00;
+=======
+    background-color: #27cc55;
+>>>>>>> fe40d0f59ea92d046bc6617a9be7aca298860fc9
   }
 
   .menu7{

@@ -23,7 +23,9 @@
       $kd_kegiatan   = $_POST['kd_kegiatan'];
       $status   = $_POST['status'];
 
+
       // var_dump($nis);
+
 
       $objAdmin->simpan_siswa($nis, $nama, $jk, $lahir, $tgl, $agama, $alamat, $asal_sekolah, $thn_lulus, $kd_jadwal, $kd_kegiatan, $status);
 

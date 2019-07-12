@@ -26,7 +26,6 @@
 						<th colspan="" rowspan="" headers="" scope="">Tahun Lulus </th>
 						<th colspan="" rowspan="" headers="" scope="">Matpel </th>
 						<th colspan="" rowspan="" headers="" scope="">Jadwal </th>
-
 						<th colspan="" rowspan="" headers="" scope="">KOde Kegiatan </th>
 						<th colspan="" rowspan="" headers="" scope="">Kelas </th>
 
@@ -52,7 +51,6 @@
 						<td colspan="" rowspan="" headers=""><?=$a->asal_sekolah ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->thn_lulus ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->matpel ?></td>
-
 						<td colspan="" rowspan="" headers=""><?=$a->hari_j ?>/<?='Jam '.$a->jam_j ?>/<?=$a->waktu ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->kd_Kegiatan ?></td>
 						<td colspan="" rowspan="" headers=""><?=$a->status ?></td>
@@ -369,7 +367,6 @@ $(document).ready(function(){
 
 
 </script>
-
 <?php
 if (isset($_POST['simpan']))
 {
