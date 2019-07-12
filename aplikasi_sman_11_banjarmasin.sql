@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 05, 2019 at 11:18 PM
+-- Generation Time: Jul 12, 2019 at 06:51 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.7
 
@@ -77,6 +77,26 @@ CREATE TABLE `artikel` (
   `penulis` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tujuan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daftar_mhs_kegiatan`
+--
+
+CREATE TABLE `daftar_mhs_kegiatan` (
+  `id_mhs_kegiatan` int(100) NOT NULL,
+  `kode_kegiatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nis` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `daftar_mhs_kegiatan`
+--
+
+INSERT INTO `daftar_mhs_kegiatan` (`id_mhs_kegiatan`, `kode_kegiatan`, `nis`) VALUES
+(13, 'KG05', 11111),
+(14, 'KG06', 11111);
 
 -- --------------------------------------------------------
 
@@ -246,7 +266,6 @@ CREATE TABLE `siswa` (
   `jk_siswa` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tempat_lahir` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `wali` int(50) NOT NULL,
   `agama` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `asal_sekolah` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -260,21 +279,19 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nis_siswa`, `nama_siswa`, `jk_siswa`, `tempat_lahir`, `tgl_lahir`, `wali`, `agama`, `alamat`, `asal_sekolah`, `thn_lulus`, `kd_jadwal`, `kd_Kegiatan`, `status`) VALUES
-('0006187133', 'Gisti Reyna Safa Thalita', 'p', 'Kandangan', '2004-01-01', 0, 'Islam', 'Jl. Jahri Saleh, RT.11, No.47', 'SMPN 9 Banjarmasin', 2015, 'KJ01', 'KG06 ', '10'),
-('0006456068', 'Anisa Fitriani', 'p', 'Balangan', '2003-11-17', 0, 'Islam', 'Jl. Pangeran, No 34', 'SMPN 2 Banjarmasin', 2015, 'KJ03', 'KG08', '10'),
-('0008029823', 'FItria Anggraini', 'p', 'Martapura', '2003-02-10', 0, 'Islam', 'Jl. Alalak Tengah, No.03', 'SMPN 12 Banjarmasin', 2015, 'KJ03', 'KG09', '10'),
-('0008923741', 'Ernawati', 'p', 'Kuala Kapuas', '2003-06-18', 0, 'Islam', 'Jl. Sungai Andai, Gg. Al-amin No 32', 'SMPN Muhammadiyah Banjarmasin', 2015, 'KJ01', 'KG01', '10'),
-('0009769322', 'Amelia', 'p', 'Anjir km.25', '2002-12-01', 0, 'Islam', 'Jl. Sultan Adam, Komp. Kadar Permai I', 'SMPN 9 Banjarmasin', 2015, 'KJ02', 'KG06', '10'),
-('16347200108', 'Adelia Wardana', 'p', 'Banjarbaru', '2004-12-01', 0, 'Islam', 'Jl. Teluk Tiram Darat Ampera Raya RT.46 RW.006', 'SMPN 31 Banjarmasin', 2016, 'KJ01', 'KG11', '10'),
-('16347300145', 'Annisa Yulianti', 'p', 'Banjarmasin', '2004-02-05', 0, 'Islam', 'Jl. Sultan Adam, Komp Merpati', 'SMPN 6 Banjarmasin', 2016, 'KJ01', 'KG07', '10'),
-('16347400136', 'Aprilia Annisa Ilfa Nabila', 'p', 'Gambut', '2004-02-17', 0, 'Islam', 'Jl. Cemara Ujung, Raga Buana RT.44, No.17', 'SMPN 31 Banjarmasin', 2016, 'KJ02', 'KG10', '10'),
-('16347500137', 'Ari Sandi', 'l', 'Basirih', '2004-05-21', 0, 'Islam', 'Jl. Sungai Andai RT.39 Banjarmasin', 'SMPN 6 Banjarmasin', 2016, 'KJ01', 'KG05', '10'),
-('23782482', 'ansjbsja', 'l', 'hudewhbdjk', '2004-12-01', 0, 'islam', 'jdjsb', 'bdsjhfb', 2015, 'KJ01', 'KG03', '10'),
-('2767237', 'sjhdjhs', 'l', 'nvbvb', '2005-12-03', 0, 'hghgh', 'n nbnm', 'bjhjn', 2017, 'KJ01', '8', '10'),
-('87638', 'Adul Yadi', 'l', 'bjm', '2004-05-02', 0, 'islam', 'hfh', 'fghfh', 2014, 'KJ01', 'KG02', '12'),
-('9991765122', 'Indra Lukmanul Hakim', 'l', 'Banjarmasin Tengah', '2003-09-24', 0, 'Islam', 'Jl. Sungai Andai, RT.37', 'SMPN 9 Banjarmasin', 2015, 'KJ03', 'KG08', '10'),
-('9996569070', 'Junaidi', 'l', 'Banjarmasin', '2003-11-15', 0, 'Islam', 'Jl. Sultan Adam, Komp. Pondok Kelapa I', 'SMPN 9 Banjarmasin', 2015, 'KJ03', 'KG04', '10');
+INSERT INTO `siswa` (`nis_siswa`, `nama_siswa`, `jk_siswa`, `tempat_lahir`, `tgl_lahir`, `agama`, `alamat`, `asal_sekolah`, `thn_lulus`, `kd_jadwal`, `kd_Kegiatan`, `status`) VALUES
+('0006187133', 'Gisti Reyna Safa Thalita', 'p', 'Kandangan', '2004-01-01', 'Islam', 'Jl. Jahri Saleh, RT.11, No.47', 'SMPN 9 Banjarmasin', 2015, 'KJ01', 'KG06 ', '10'),
+('0006456068', 'Anisa Fitriani', 'p', 'Balangan', '2003-11-17', 'Islam', 'Jl. Pangeran, No 34', 'SMPN 2 Banjarmasin', 2015, 'KJ03', 'KG08', '10'),
+('0008029823', 'FItria Anggraini', 'p', 'Martapura', '2003-02-10', 'Islam', 'Jl. Alalak Tengah, No.03', 'SMPN 12 Banjarmasin', 2015, 'KJ03', 'KG09', '10'),
+('0008923741', 'Ernawati', 'p', 'Kuala Kapuas', '2003-06-18', 'Islam', 'Jl. Sungai Andai, Gg. Al-amin No 32', 'SMPN Muhammadiyah Banjarmasin', 2015, 'KJ01', 'KG01', '10'),
+('0009769322', 'Amelia', 'p', 'Anjir km.25', '2002-12-01', 'Islam', 'Jl. Sultan Adam, Komp. Kadar Permai I', 'SMPN 9 Banjarmasin', 2015, 'KJ02', 'KG06', '10'),
+('11111', 'syarif', 'l', 'Tanjung', '2019-07-30', 'Islam', 'jln', 'SMK', 2012, 'KJ01', '', '10'),
+('16347200108', 'Adelia Wardana', 'p', 'Banjarbaru', '2004-12-01', 'Islam', 'Jl. Teluk Tiram Darat Ampera Raya RT.46 RW.006', 'SMPN 31 Banjarmasin', 2016, 'KJ01', 'KG11', '10'),
+('16347300145', 'Annisa Yulianti', 'p', 'Banjarmasin', '2004-02-05', 'Islam', 'Jl. Sultan Adam, Komp Merpati', 'SMPN 6 Banjarmasin', 2016, 'KJ01', 'KG07', '10'),
+('16347400136', 'Aprilia Annisa Ilfa Nabila', 'p', 'Gambut', '2004-02-17', 'Islam', 'Jl. Cemara Ujung, Raga Buana RT.44, No.17', 'SMPN 31 Banjarmasin', 2016, 'KJ02', 'KG10', '10'),
+('16347500137', 'Ari Sandi', 'l', 'Basirih', '2004-05-21', 'Islam', 'Jl. Sungai Andai RT.39 Banjarmasin', 'SMPN 6 Banjarmasin', 2016, 'KJ01', 'KG05', '10'),
+('9991765122', 'Indra Lukmanul Hakim', 'l', 'Banjarmasin Tengah', '2003-09-24', 'Islam', 'Jl. Sungai Andai, RT.37', 'SMPN 9 Banjarmasin', 2015, 'KJ03', 'KG08', '10'),
+('9996569070', 'Junaidi', 'l', 'Banjarmasin', '2003-11-15', 'Islam', 'Jl. Sultan Adam, Komp. Pondok Kelapa I', 'SMPN 9 Banjarmasin', 2015, 'KJ03', 'KG04', '10');
 
 -- --------------------------------------------------------
 
@@ -315,6 +332,12 @@ ALTER TABLE `absensi_siswa`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Indexes for table `daftar_mhs_kegiatan`
+--
+ALTER TABLE `daftar_mhs_kegiatan`
+  ADD PRIMARY KEY (`id_mhs_kegiatan`);
 
 --
 -- Indexes for table `guru`
@@ -368,6 +391,12 @@ ALTER TABLE `wali`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `daftar_mhs_kegiatan`
+--
+ALTER TABLE `daftar_mhs_kegiatan`
+  MODIFY `id_mhs_kegiatan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `nilai`
